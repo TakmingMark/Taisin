@@ -16,10 +16,14 @@ public class View {
 	private JPanel jPanel;
 	
 	
-	private JLabel jobTitleLabel,leavePeriodLabel,writeNameLabel,
-					eventDescriptionLabel,leaveStateLabel,proxyNameLabel;
-	private JComboBox jobTitleComboBox,leavePeriodComboBox,writeNameComboBox,
-						leaveStateComboBox,proxyNameComboBox;
+	private JLabel jobTitleLabel,leavePeriodLabel,fillInPeopleLabel,
+					eventDescriptionLabel,leaveStateLabel,businessAgentLabel,
+					courseAgentLabel,classTimeLabel,classNameLabel,
+					classTeacherLabel,courseNameLabel;
+	private JComboBox jobTitleComboBox,leavePeriodComboBox,fillInPeopleComboBox,
+						leaveStateComboBox,businessAgentComboBox,courseAgentComboBox,
+						classTimeComboBox,classNameComboBox,classTeacherComboBox,
+						courseNameComboBox;
 	private JTextArea eventDescriptionTextArea;
 	
 	View() {
@@ -35,17 +39,18 @@ public class View {
 		jPanel=new JPanel();
 		jobTitleLabel=new JLabel(TextContent.jobTitleText);
 		leavePeriodLabel=new JLabel(TextContent.leavePeriodText);
-		writeNameLabel=new JLabel(TextContent.writeNameText);
+		fillInPeopleLabel=new JLabel(TextContent.fillInPeopleText);
 		eventDescriptionLabel=new JLabel(TextContent.eventDescriptionText);
 		leaveStateLabel=new JLabel(TextContent.leaveStateText);
-		proxyNameLabel=new JLabel(TextContent.proxyNameText);
+		businessAgentLabel=new JLabel(TextContent.businessAgentText);
 		
 		jobTitleComboBox=new JComboBox(new String[]{"a","b"});
 		leavePeriodComboBox=new JComboBox(new String[]{"a","b"});
-		writeNameComboBox=new JComboBox(new String[]{"a","b"});
+		fillInPeopleComboBox=new JComboBox(new String[]{"a","b"});
 		leaveStateComboBox=new JComboBox(new String[]{"a","b"});
-		proxyNameComboBox=new JComboBox(new String[]{"a","b"});
-			
+		businessAgentComboBox=new JComboBox(new String[]{"a","b"});
+		
+		eventDescriptionTextArea=new JTextArea(5,5);
 		jFrame.setLocation(300, 400);
 		jPanel.setPreferredSize(new Dimension(500, 500));
 		
@@ -54,38 +59,49 @@ public class View {
 	
 		groupLayout.setHorizontalGroup(
 				groupLayout.createSequentialGroup()
-				.addGroup(groupLayout.createParallelGroup()
-						.addGroup(groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createParallelGroup()
 							.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addComponent(writeNameLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addComponent(fillInPeopleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 								)
-						)
-				.addGroup(groupLayout.createParallelGroup()
-						.addGroup(groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createParallelGroup()
 								.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-								.addComponent(writeNameComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								.addComponent(fillInPeopleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 								.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 								)
-						)
-				.addGroup(groupLayout.createParallelGroup()
-						.addGroup(group)
-						)
+						.addGroup(groupLayout.createParallelGroup()
+								.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								.addComponent(eventDescriptionLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								.addComponent(businessAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								)
+						.addGroup(groupLayout.createParallelGroup()
+								.addComponent(leavePeriodComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								.addComponent(eventDescriptionTextArea,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								.addComponent(businessAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								)
 				
 		);
 		
 		groupLayout.setVerticalGroup(
 				groupLayout.createSequentialGroup()
 				.addGroup(groupLayout.createParallelGroup()
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-					
+						.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(leavePeriodComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+				.addGroup(groupLayout.createParallelGroup()
+						.addComponent(fillInPeopleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(fillInPeopleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(eventDescriptionLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(eventDescriptionTextArea,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						)
-				)
-
+				.addGroup(groupLayout.createParallelGroup()
+						.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(businessAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(businessAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						)			
 			);
 		
 		jFrame.add(jPanel);
@@ -93,4 +109,6 @@ public class View {
 		jFrame.setVisible(true);
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+	
 }
