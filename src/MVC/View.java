@@ -3,9 +3,11 @@ package MVC;
 import java.awt.Dimension;
 
 import javax.swing.GroupLayout;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.LayoutStyle;
 import javax.xml.soap.Text;
 
@@ -14,7 +16,12 @@ public class View {
 	private JPanel jPanel;
 	
 	
-	private JLabel jobTatileLabel;
+	private JLabel jobTitleLabel,leavePeriodLabel,writeNameLabel,
+					eventDescriptionLabel,leaveStateLabel,proxyNameLabel;
+	private JComboBox jobTitleComboBox,leavePeriodComboBox,writeNameComboBox,
+						leaveStateComboBox,proxyNameComboBox;
+	private JTextArea eventDescriptionTextArea;
+	
 	View() {
 		initView();
 	}
@@ -26,9 +33,19 @@ public class View {
 	private void initView() {
 		jFrame=new JFrame("Taisin");
 		jPanel=new JPanel();
-		jobTatileLabel=new JLabel(TextContent.jobTitleText);
+		jobTitleLabel=new JLabel(TextContent.jobTitleText);
+		leavePeriodLabel=new JLabel(TextContent.leavePeriodText);
+		writeNameLabel=new JLabel(TextContent.writeNameText);
+		eventDescriptionLabel=new JLabel(TextContent.eventDescriptionText);
+		leaveStateLabel=new JLabel(TextContent.leaveStateText);
+		proxyNameLabel=new JLabel(TextContent.proxyNameText);
 		
-		
+		jobTitleComboBox=new JComboBox(new String[]{"a","b"});
+		leavePeriodComboBox=new JComboBox(new String[]{"a","b"});
+		writeNameComboBox=new JComboBox(new String[]{"a","b"});
+		leaveStateComboBox=new JComboBox(new String[]{"a","b"});
+		proxyNameComboBox=new JComboBox(new String[]{"a","b"});
+			
 		jFrame.setLocation(300, 400);
 		jPanel.setPreferredSize(new Dimension(500, 500));
 		
@@ -37,27 +54,38 @@ public class View {
 	
 		groupLayout.setHorizontalGroup(
 				groupLayout.createSequentialGroup()
-				.addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
+				.addGroup(groupLayout.createParallelGroup()
 						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
-			                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(jobTatileLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
-			                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addComponent(writeNameLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								)
 						)
-				)
+				.addGroup(groupLayout.createParallelGroup()
+						.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								.addComponent(writeNameComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+								)
+						)
+				.addGroup(groupLayout.createParallelGroup()
+						.addGroup(group)
+						)
+				
 		);
 		
 		groupLayout.setVerticalGroup(
 				groupLayout.createSequentialGroup()
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
-	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
-						.addComponent(jobTatileLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-				
+				.addGroup(groupLayout.createParallelGroup()
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+					
+						)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						)
 				)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
-	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+
 			);
 		
 		jFrame.add(jPanel);
