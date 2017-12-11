@@ -1,5 +1,7 @@
 package MVC;
 
+import java.awt.List;
+
 public interface TextContent {
 	String jobTitleText="Â¾ºÙ:";
 	String leavePeriodText="½Ð°²´Á¶¡:";
