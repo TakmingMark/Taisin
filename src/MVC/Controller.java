@@ -1,15 +1,19 @@
 package MVC;
 
+import java.security.PrivilegedActionException;
 import java.util.ArrayList;
 
+import javax.management.loading.PrivateClassLoader;
 import javax.swing.JComboBox;
 
-import Model.JsonModel;
+import Calendar.CalendarJSONModel;
+import Calendar.CalendarView;
+import Model.LeaveJSONModel;
 import Model.Model;
 import View.View;
 
 public class Controller {
-	private JsonModel jsonModel;
+	private LeaveJSONModel leaveJSONModel;
 	private View view;
 	
 	private Controller() {
@@ -20,30 +24,30 @@ public class Controller {
 	}
 	
 	public void initController() {
-		initJsonToLayout();
+		initLeaveJSONToLayout();
 	}
 
-	public void setJsonModel(JsonModel jsonModel) {
-		this.jsonModel = jsonModel;
+	public void setJSONModel(LeaveJSONModel leaveJSONModel) {
+		this.leaveJSONModel = leaveJSONModel;
 	}
 
 	public void setView(View view) {
 		this.view = view;
 	}
 	
-	private void initJsonToLayout() {
-		readJsonToComboBox(view.getJobTitleComboBox(),jsonModel.getJobTitleList());
-		readJsonToComboBox(view.getFillInPeopleComboBox(), jsonModel.getTeachNameList());
-		readJsonToComboBox(view.getBusinessAgentComboBox(),jsonModel.getTeachNameList());
-		readJsonToComboBox(view.getLeaveStateComboBox(), jsonModel.getLeaveStateList());
-		readJsonToComboBox(view.getCourseAgentComboBox(), jsonModel.getTeachNameList());
-		readJsonToComboBox(view.getClassNameComboBox(), jsonModel.getClassNameList());
-		readJsonToComboBox(view.getClassTimeComboBox(), jsonModel.getClassTimeList());
-		readJsonToComboBox(view.getClassTeacherComboBox(), jsonModel.getTeachNameList());
-		readJsonToComboBox(view.getCourseNameComboBox(), jsonModel.getCourseList());
+	private void initLeaveJSONToLayout() {
+		readJSONToComboBox(view.getJobTitleComboBox(),leaveJSONModel.getJobTitleList());
+		readJSONToComboBox(view.getFillInPeopleComboBox(), leaveJSONModel.getTeachNameList());
+		readJSONToComboBox(view.getBusinessAgentComboBox(),leaveJSONModel.getTeachNameList());
+		readJSONToComboBox(view.getLeaveStateComboBox(), leaveJSONModel.getLeaveStateList());
+		readJSONToComboBox(view.getCourseAgentComboBox(), leaveJSONModel.getTeachNameList());
+		readJSONToComboBox(view.getClassNameComboBox(), leaveJSONModel.getClassNameList());
+		readJSONToComboBox(view.getClassTimeComboBox(), leaveJSONModel.getClassTimeList());
+		readJSONToComboBox(view.getClassTeacherComboBox(), leaveJSONModel.getTeachNameList());
+		readJSONToComboBox(view.getCourseNameComboBox(), leaveJSONModel.getCourseList());
 	}
 	
-	private void readJsonToComboBox(JComboBox<String> jComboBox,ArrayList<String> arrayList) {
+	private void readJSONToComboBox(JComboBox<String> jComboBox,ArrayList<String> arrayList) {
 		for(String element:arrayList)
 			jComboBox.addItem(element);
 	}

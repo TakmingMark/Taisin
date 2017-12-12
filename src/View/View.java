@@ -42,13 +42,12 @@ import MVC.TextContent;
 public class View {
 	private JFrame jFrame;
 	private JPanel jPanel,topPanel,middlePanel,buttomPanel;
-
-	
+	private JPanel calendarPanel;
 	private JLabel jobTitleLabel,leavePeriodLabel,fillInPeopleLabel,
 					eventDescriptionLabel,leaveStateLabel,businessAgentLabel,
 					courseAgentLabel,classTimeLabel,classNameLabel,
 					classTeacherLabel,courseNameLabel;
-	private JComboBox jobTitleComboBox,leavePeriodComboBox,fillInPeopleComboBox,
+	private JComboBox jobTitleComboBox,fillInPeopleComboBox,
 						leaveStateComboBox,businessAgentComboBox,courseAgentComboBox,
 						classTimeComboBox,classNameComboBox,classTeacherComboBox,
 						courseNameComboBox;
@@ -57,15 +56,16 @@ public class View {
 	private JButton enterButton,insertButton,finishButton;
 	
 	private JDatePicker datePicker;
+	
 	private View() {
-		initView();
+		
 	}
 	
 	public static View getViewObject() {
 		return new View();
 	}
 	
-	private void initView() {
+	public void initView() {
 		jFrame=new JFrame("Taisin");
 		jPanel=new JPanel();
 		topPanel=new JPanel();
@@ -85,7 +85,6 @@ public class View {
 		courseNameLabel=new JLabel(TextContent.courseNameText);
 		
 		jobTitleComboBox=new JComboBox();
-		leavePeriodComboBox=new JComboBox();
 		fillInPeopleComboBox=new JComboBox();
 		leaveStateComboBox=new JComboBox();
 		businessAgentComboBox=new JComboBox();
@@ -124,23 +123,24 @@ public class View {
 									.addGroup(topGroupLayout.createParallelGroup()
 											.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(fillInPeopleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-											.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+											.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									.addGap(10)
 									.addGroup(topGroupLayout.createParallelGroup()
 											.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(fillInPeopleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-											.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+											
 											)
 									.addGap(30)
 									.addGroup(topGroupLayout.createParallelGroup()
-											.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+											.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(businessAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									.addGap(10)
 									.addGroup(topGroupLayout.createParallelGroup()
-											.addComponent(leavePeriodComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+											.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(businessAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+											.addComponent(calendarPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									)
 							)
@@ -159,8 +159,8 @@ public class View {
 				.addGroup(topGroupLayout.createParallelGroup()
 						.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-						.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-						.addComponent(leavePeriodComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						)
 				.addGap(8)
 				.addGroup(topGroupLayout.createParallelGroup()
@@ -171,8 +171,8 @@ public class View {
 						)
 				.addGap(8)
 				.addGroup(topGroupLayout.createParallelGroup()
-						.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-						.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(calendarPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
 	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -324,10 +324,6 @@ public class View {
 		return jobTitleComboBox;
 	}
 
-	public JComboBox getLeavePeriodComboBox() {
-		return leavePeriodComboBox;
-	}
-
 	public JComboBox getFillInPeopleComboBox() {
 		return fillInPeopleComboBox;
 	}
@@ -358,5 +354,9 @@ public class View {
 
 	public JComboBox getCourseNameComboBox() {
 		return courseNameComboBox;
+	}
+	
+	public void setCalendarPanel(JPanel calendarPanel) {
+		this.calendarPanel=calendarPanel;
 	}
 }

@@ -13,19 +13,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class JsonModel {
+public class LeaveJSONModel {
 	 ArrayList<String> classStateList,teachNameList,leaveStateList,leaveList,
 			jobTitleList,courseList,classNameList,classTimeList;
 
-	private JsonModel() {
-		initJsonModel();
+	private LeaveJSONModel() {
+		initLeaveJSONModel();
 	}
 	
-	public static JsonModel getJosnModelObject() {
-		return new JsonModel();
+	public static LeaveJSONModel getJosnModelObject() {
+		return new LeaveJSONModel();
 	}
 	
-	public void initJsonModel() {
+	public void initLeaveJSONModel() {
 		 classStateList=new ArrayList<String>();
 		 teachNameList=new ArrayList<String>();
 		 leaveStateList=new ArrayList<String>();
@@ -35,10 +35,10 @@ public class JsonModel {
 		 classNameList=new ArrayList<String>();
 		 classTimeList=new ArrayList<String>();
 		 
-		parseJson();
+		parseJSON();
 	}
 	
-	private void parseJson() {
+	private void parseJSON() {
 
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = null;

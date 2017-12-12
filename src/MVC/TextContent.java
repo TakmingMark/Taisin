@@ -22,4 +22,11 @@ public interface TextContent {
 	
 	String topPanelText="請假資料";
 	String buttomPanelText="代課資料";
+	
+	String yearText="年";
+	String monthText="月";
+	String dayText="日";
+	String hourText="時";
+	String minuteText="分";
+	String secondText="秒";
 }
