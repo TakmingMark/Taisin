@@ -2,8 +2,11 @@ package Model;
 
 import java.awt.List;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import javax.lang.model.element.Element;
@@ -44,8 +47,10 @@ public class LeaveJSONModel {
 			JSONObject jsonObject = null;
 			JSONArray jsonArray=null;
 			try {
-				jsonObject = (JSONObject) parser.parse(new BufferedReader(new FileReader("json/leave.json" )));
-				
+				jsonObject = (JSONObject) parser.parse(
+						new BufferedReader(new InputStreamReader(
+			            new FileInputStream("json/leave.json"),"UTF-8")));
+			
 				jsonArray=(JSONArray) jsonObject.get("classState");
 				for(Object element:jsonArray) 
 					classStateList.add((String)element);
@@ -70,7 +75,10 @@ public class LeaveJSONModel {
 				jsonArray=(JSONArray) jsonObject.get("classTime");
 				for(Object element:jsonArray) 
 					classTimeList.add((String)element);
-			} catch (IOException | ParseException e) {
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
 	}

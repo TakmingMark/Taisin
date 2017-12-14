@@ -1,8 +1,11 @@
 package Calendar;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
@@ -38,7 +41,9 @@ public class CalendarJSONModel {
 			JSONObject jsonObject = null;
 			JSONArray jsonArray=null;
 			try {
-				jsonObject = (JSONObject) parser.parse(new BufferedReader(new FileReader("json/calendar.json" )));
+				jsonObject = (JSONObject) parser.parse(
+				        new BufferedReader(new InputStreamReader(
+				            new FileInputStream("json/calendar.json"),"UTF-8")));//don't use BOM
 				
 				jsonArray=(JSONArray) jsonObject.get("year");
 				for(Object element:jsonArray) 
