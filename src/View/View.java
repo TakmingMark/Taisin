@@ -1,20 +1,6 @@
 package View;
 
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Insets;
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -25,19 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.LayoutStyle;
-import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-import javax.xml.soap.Text;
 
 import org.jdatepicker.JDatePicker;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import MVC.TextContent;
+import component.TextContent;
 
 public class View {
 	private JFrame jFrame;
@@ -117,18 +97,22 @@ public class View {
 				topGroupLayout.createSequentialGroup()
 					.addGroup(topGroupLayout.createParallelGroup()
 							.addGroup(topGroupLayout.createSequentialGroup()
+									.addGap(20)
 									.addGroup(topGroupLayout.createParallelGroup()
 											.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(fillInPeopleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
+									.addGap(10)
 									.addGroup(topGroupLayout.createParallelGroup()
 											.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(fillInPeopleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
+									.addGap(40)
 									.addGroup(topGroupLayout.createParallelGroup()
 											.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(businessAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
+									.addGap(10)
 									.addGroup(topGroupLayout.createParallelGroup()
 											.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(businessAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
@@ -138,111 +122,36 @@ public class View {
 									.addGroup(topGroupLayout.createParallelGroup()
 											.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
+									.addGap(5)
 									.addGroup(topGroupLayout.createParallelGroup()
 											.addComponent(calendarPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									)
 							)
 					);
-		
-//		topGroupLayout.setHorizontalGroup(
-//				topGroupLayout.createSequentialGroup()
-//					.addGroup(topGroupLayout.createParallelGroup()
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									.addComponent(fillInPeopleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									.addComponent(fillInPeopleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									.addComponent(businessAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									.addComponent(businessAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							)
-//					.addGroup(topGroupLayout.createParallelGroup()
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(calendarPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							)
-//					);
-		
 		topGroupLayout.setVerticalGroup(
 				topGroupLayout.createSequentialGroup()
+					.addGap(10)
 					.addGroup(topGroupLayout.createParallelGroup()
 							.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							)
+					.addGap(10)
 					.addGroup(topGroupLayout.createParallelGroup()
 							.addComponent(fillInPeopleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(fillInPeopleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(businessAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(businessAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							)
-					.addGroup(topGroupLayout.createParallelGroup()
+					.addGap(10)
+					.addGroup(topGroupLayout.createParallelGroup(Alignment.CENTER)
 							.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(calendarPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							)				
+							)		
+					.addGap(10)
 				);
-		
-//		topGroupLayout.setVerticalGroup(
-//				topGroupLayout.createSequentialGroup()
-//					.addGroup(topGroupLayout.createParallelGroup()
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									.addComponent(fillInPeopleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									.addComponent(fillInPeopleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									.addComponent(businessAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									.addComponent(businessAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							)
-//					.addGroup(topGroupLayout.createParallelGroup()
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									
-//									)
-//							.addGroup(topGroupLayout.createSequentialGroup()
-//									.addComponent(calendarPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//									)
-//							)
-//				);
-//		topGroupLayout.setVerticalGroup(
-//				topGroupLayout.createSequentialGroup()	
-//						)
-//				.addGap(8)
-//				.addGroup(topGroupLayout.createParallelGroup()
-//						
-//						
-//						
-//						
-//						)
-//				.addGap(8)
-//				.addGroup(topGroupLayout.createParallelGroup()
-//						.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//						.addComponent(calendarPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-//						)
-//				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
-//	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-//				.addGap(10)
-//				);
 		
 		GroupLayout middleGroupLayout=new GroupLayout(middlePanel);
 		middlePanel.setLayout(middleGroupLayout);
@@ -268,7 +177,7 @@ public class View {
 				middleGroupLayout.createSequentialGroup()
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
 	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addGroup(middleGroupLayout.createParallelGroup()
+				.addGroup(middleGroupLayout.createParallelGroup(Alignment.CENTER)
 						.addComponent(eventDescriptionLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						.addComponent(eventDescriptionTextArea,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						)
@@ -385,6 +294,72 @@ public class View {
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	public JSONObject pressEnterButtonState() {
+		JSONObject jsonObject=new JSONObject();
+		jsonObject.put("jobTitle", jobTitleComboBox.getSelectedItem());
+		jsonObject.put("leaveState",leaveStateComboBox.getSelectedItem());
+		jsonObject.put("fillInPeople", fillInPeopleComboBox.getSelectedItem());
+		jsonObject.put("businessAgent", businessAgentComboBox.getSelectedItem());
+		jsonObject.put("eventDescription", eventDescriptionTextArea.getText());
+		return jsonObject;
+	}
+	
+	public JSONObject pressInsertButtonState() {
+		JSONObject jsonObject=new JSONObject();
+		jsonObject.put("courseAgent", courseAgentComboBox.getSelectedItem());
+		jsonObject.put("classTime", classTimeComboBox.getSelectedItem());
+		jsonObject.put("className", classNameComboBox.getSelectedItem());
+		jsonObject.put("classTeacher", classTeacherComboBox.getSelectedItem());
+		jsonObject.put("courseName", courseNameComboBox.getSelectedItem());
+		return jsonObject;
+	}
+	public void pressFinishButtonState() {
+		
+	}
+	
+	public void disableTopAndMiddlePanel() {
+		jobTitleComboBox.setEnabled(false);
+		fillInPeopleComboBox.setEnabled(false);
+		leaveStateComboBox.setEnabled(false);
+		businessAgentComboBox.setEnabled(false);
+		eventDescriptionTextArea.setEnabled(false);
+		
+		enterButton.setEnabled(false);;
+		
+	}
+	
+	public void enableTopAndMiddlePanel() {
+		jobTitleComboBox.setEnabled(true);
+		fillInPeopleComboBox.setEnabled(true);
+		leaveStateComboBox.setEnabled(true);
+		businessAgentComboBox.setEnabled(true);
+		eventDescriptionTextArea.setEnabled(true);
+		
+		enterButton.setEnabled(true);;
+	}
+	
+	public void disableButtomPanel() {
+		courseAgentComboBox.setEnabled(false);
+		classTimeComboBox.setEnabled(false);
+		classNameComboBox.setEnabled(false);
+		classTeacherComboBox.setEnabled(false);
+		courseNameComboBox.setEnabled(false);
+		
+		insertButton.setEnabled(false);
+		finishButton.setEnabled(false);
+	}
+	
+	public void enableButtomPanel() {
+		courseAgentComboBox.setEnabled(true);
+		classTimeComboBox.setEnabled(true);
+		classNameComboBox.setEnabled(true);
+		classTeacherComboBox.setEnabled(true);
+		courseNameComboBox.setEnabled(true);
+		
+		insertButton.setEnabled(true);
+		finishButton.setEnabled(true);
+	}
+	
 	public JComboBox getJobTitleComboBox() {
 		return jobTitleComboBox;
 	}
@@ -424,4 +399,18 @@ public class View {
 	public void setCalendarPanel(JPanel calendarPanel) {
 		this.calendarPanel=calendarPanel;
 	}
+
+	public JButton getEnterButton() {
+		return enterButton;
+	}
+
+	public JButton getInsertButton() {
+		return insertButton;
+	}
+
+	public JButton getFinishButton() {
+		return finishButton;
+	}
+	
+
 }

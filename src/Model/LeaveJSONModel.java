@@ -1,15 +1,10 @@
 package Model;
 
-import java.awt.List;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import javax.lang.model.element.Element;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -24,7 +19,7 @@ public class LeaveJSONModel {
 		initLeaveJSONModel();
 	}
 	
-	public static LeaveJSONModel getJosnModelObject() {
+	public static LeaveJSONModel getJSONModelObject() {
 		return new LeaveJSONModel();
 	}
 	

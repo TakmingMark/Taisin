@@ -1,10 +1,8 @@
-package MVC;
-
-import java.awt.List;
+package component;
 
 public interface TextContent {
 	String jobTitleText="職稱:";
-	String leavePeriodText="請假期間:";
+	String leavePeriodText="請假期間";
 	String fillInPeopleText="填寫人:";
 	String eventDescriptionText="事由:";
 	String leaveStateText="假別:";
