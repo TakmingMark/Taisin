@@ -1,7 +1,7 @@
 package Main;
 
 import Calendar.CalendarController;
-import Calendar.CalendarJSONModel;
+import Calendar.CalendarModel;
 import Calendar.CalendarView;
 import Controller.Controller;
 import Model.LeaveJSONModel;
@@ -34,7 +34,7 @@ public class Activity {
 	
 	public CalendarController initCalendar() {
 		CalendarView calendarView=CalendarView.getCalendarViewObject();
-		CalendarJSONModel calendarJSONModel=CalendarJSONModel.getCalendarJSONModelObject();
+		CalendarModel calendarJSONModel=CalendarModel.getCalendarJSONModelObject();
 		CalendarController calendarController=CalendarController.getCalendarControllerObject();
 		
 		calendarController.setCalendarJSONModel(calendarJSONModel);

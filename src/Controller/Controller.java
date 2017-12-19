@@ -1,6 +1,7 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -33,15 +34,15 @@ public class Controller {
 	
 	
 	private void initLeaveJSONToLayout() {
-		readJSONToComboBox(view.getJobTitleComboBox(),leaveJSONModel.getJobTitleList());
-		readJSONToComboBox(view.getFillInPeopleComboBox(), leaveJSONModel.getTeachNameList());
-		readJSONToComboBox(view.getBusinessAgentComboBox(),leaveJSONModel.getTeachNameList());
-		readJSONToComboBox(view.getLeaveStateComboBox(), leaveJSONModel.getLeaveStateList());
-		readJSONToComboBox(view.getCourseAgentComboBox(), leaveJSONModel.getTeachNameList());
-		readJSONToComboBox(view.getClassNameComboBox(), leaveJSONModel.getClassNameList());
-		readJSONToComboBox(view.getClassTimeComboBox(), leaveJSONModel.getClassTimeList());
-		readJSONToComboBox(view.getClassTeacherComboBox(), leaveJSONModel.getTeachNameList());
-		readJSONToComboBox(view.getCourseNameComboBox(), leaveJSONModel.getCourseList());
+		readJSONToComboBox(view.getJobTitleComboBox(),model.getInputLeaveData().getJobTitle());
+		readJSONToComboBox(view.getFillInPeopleComboBox(), model.getInputLeaveData().getTeacherName());
+		readJSONToComboBox(view.getBusinessAgentComboBox(),model.getInputLeaveData().getTeacherName());
+		readJSONToComboBox(view.getLeaveStateComboBox(), model.getInputLeaveData().getLeaveState());
+		readJSONToComboBox(view.getCourseAgentComboBox(), model.getInputLeaveData().getTeacherName());
+		readJSONToComboBox(view.getClassNameComboBox(), model.getInputLeaveData().getClassName());
+		readJSONToComboBox(view.getClassTimeComboBox(), model.getInputLeaveData().getClassTime());
+		readJSONToComboBox(view.getClassTeacherComboBox(), model.getInputLeaveData().getClassTeacherName());
+		readJSONToComboBox(view.getCourseNameComboBox(), model.getInputLeaveData().getCourse());
 	}
 	
 	private void initViewListener() {
@@ -50,8 +51,9 @@ public class Controller {
 		view.getFinishButton().addActionListener(e ->pressFinishButton());
 	}
 	
-	private void readJSONToComboBox(JComboBox<String> jComboBox,ArrayList<String> arrayList) {
-		for(String element:arrayList)
+	private void readJSONToComboBox(JComboBox<String> jComboBox,List<String> list) {
+		
+		for(String element:list)
 			jComboBox.addItem(element);
 	}
 	

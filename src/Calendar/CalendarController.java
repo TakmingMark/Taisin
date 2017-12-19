@@ -1,6 +1,7 @@
 package Calendar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -8,7 +9,7 @@ import javax.swing.JPanel;
 import org.json.simple.JSONObject;
 
 public class CalendarController {
-	private CalendarJSONModel calendarJSONModel;
+	private CalendarModel calendarJSONModel;
 	private CalendarView calendarView;
 	
 	private CalendarController() {
@@ -38,8 +39,8 @@ public class CalendarController {
 		readJSONToComboBox(calendarView.getEndSecondComboBox(),calendarJSONModel.getSecondList());
 	}
 	
-	private void readJSONToComboBox(JComboBox<String> jComboBox,ArrayList<String> arrayList) {
-		for(String element:arrayList)
+	private void readJSONToComboBox(JComboBox<String> jComboBox,List<String> list) {
+		for(String element:list)
 			jComboBox.addItem(element);
 	}
 	
@@ -50,8 +51,7 @@ public class CalendarController {
 	public void enableLayout() {
 		calendarView.enable();
 	}
-	public JSONObject getCalendarJSON() {
-		JSONObject jsonObject=new JSONObject();
+	public String getCalendarJSON() {
 		
 		jsonObject=calendarView.getStartCalendarJSON();
 		jsonObject.putAll(calendarView.getEndCalendarJSON());
@@ -59,7 +59,7 @@ public class CalendarController {
 		return jsonObject;
 	}
 	
-	public void setCalendarJSONModel(CalendarJSONModel calendarJSONModel) {
+	public void setCalendarJSONModel(CalendarModel calendarJSONModel) {
 		this.calendarJSONModel = calendarJSONModel;
 	}
 
