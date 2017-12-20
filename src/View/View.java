@@ -27,7 +27,7 @@ public class View {
 					eventDescriptionLabel,leaveStateLabel,businessAgentLabel,
 					courseAgentLabel,classTimeLabel,classNameLabel,
 					classTeacherLabel,courseNameLabel;
-	private JComboBox jobTitleComboBox,fillInPeopleComboBox,
+	private JComboBox<String> jobTitleComboBox,fillInPeopleComboBox,
 						leaveStateComboBox,businessAgentComboBox,courseAgentComboBox,
 						classTimeComboBox,classNameComboBox,classTeacherComboBox,
 						courseNameComboBox;
@@ -64,16 +64,16 @@ public class View {
 		classTeacherLabel=new JLabel(TextContent.classTeacherText);
 		courseNameLabel=new JLabel(TextContent.courseNameText);
 		
-		jobTitleComboBox=new JComboBox();
-		fillInPeopleComboBox=new JComboBox();
-		leaveStateComboBox=new JComboBox();
-		businessAgentComboBox=new JComboBox();
+		jobTitleComboBox=new JComboBox<String>();
+		fillInPeopleComboBox=new JComboBox<String>();
+		leaveStateComboBox=new JComboBox<String>();
+		businessAgentComboBox=new JComboBox<String>();
 		
-		courseAgentComboBox=new JComboBox();
-		classTimeComboBox=new JComboBox();
-		classNameComboBox=new JComboBox();
-		classTeacherComboBox=new JComboBox();
-		courseNameComboBox=new JComboBox();
+		courseAgentComboBox=new JComboBox<String>();
+		classTimeComboBox=new JComboBox<String>();
+		classNameComboBox=new JComboBox<String>();
+		classTeacherComboBox=new JComboBox<String>();
+		courseNameComboBox=new JComboBox<String>();
 		
 		eventDescriptionTextArea=new JTextArea(3,25);
 		
@@ -81,8 +81,10 @@ public class View {
 		insertButton=new JButton(TextContent.insertText);
 		finishButton=new JButton(TextContent.finishText);
 		
-		topPanel.setBorder(new TitledBorder(new EtchedBorder(),TextContent.topPanelText,TitledBorder.LEFT,TitledBorder.TOP));
-		buttomPanel.setBorder(new TitledBorder(new EtchedBorder(),TextContent.buttomPanelText,TitledBorder.LEFT,TitledBorder.TOP));
+		topPanel.setBorder(new TitledBorder
+				(new EtchedBorder(),TextContent.topPanelText,TitledBorder.LEFT,TitledBorder.TOP));
+		buttomPanel.setBorder(new TitledBorder
+				(new EtchedBorder(),TextContent.buttomPanelText,TitledBorder.LEFT,TitledBorder.TOP));
 		
 		eventDescriptionTextArea.setLineWrap(true);       
 		eventDescriptionTextArea.setWrapStyleWord(true);
@@ -294,8 +296,10 @@ public class View {
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	@SuppressWarnings("unchecked")
 	public JSONObject pressEnterButtonState() {
 		JSONObject jsonObject=new JSONObject();
+	
 		jsonObject.put("jobTitle", jobTitleComboBox.getSelectedItem());
 		jsonObject.put("leaveState",leaveStateComboBox.getSelectedItem());
 		jsonObject.put("fillInPeople", fillInPeopleComboBox.getSelectedItem());
@@ -304,6 +308,7 @@ public class View {
 		return jsonObject;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public JSONObject pressInsertButtonState() {
 		JSONObject jsonObject=new JSONObject();
 		jsonObject.put("courseAgent", courseAgentComboBox.getSelectedItem());
@@ -325,7 +330,6 @@ public class View {
 		eventDescriptionTextArea.setEnabled(false);
 		
 		enterButton.setEnabled(false);;
-		
 	}
 	
 	public void enableTopAndMiddlePanel() {
@@ -360,39 +364,39 @@ public class View {
 		finishButton.setEnabled(true);
 	}
 	
-	public JComboBox getJobTitleComboBox() {
+	public JComboBox<String> getJobTitleComboBox() {
 		return jobTitleComboBox;
 	}
 
-	public JComboBox getFillInPeopleComboBox() {
+	public JComboBox<String> getFillInPeopleComboBox() {
 		return fillInPeopleComboBox;
 	}
 
-	public JComboBox getLeaveStateComboBox() {
+	public JComboBox<String> getLeaveStateComboBox() {
 		return leaveStateComboBox;
 	}
 
-	public JComboBox getBusinessAgentComboBox() {
+	public JComboBox<String> getBusinessAgentComboBox() {
 		return businessAgentComboBox;
 	}
 
-	public JComboBox getCourseAgentComboBox() {
+	public JComboBox<String> getCourseAgentComboBox() {
 		return courseAgentComboBox;
 	}
 
-	public JComboBox getClassTimeComboBox() {
+	public JComboBox<String> getClassTimeComboBox() {
 		return classTimeComboBox;
 	}
 
-	public JComboBox getClassNameComboBox() {
+	public JComboBox<String> getClassNameComboBox() {
 		return classNameComboBox;
 	}
 
-	public JComboBox getClassTeacherComboBox() {
+	public JComboBox<String> getClassTeacherComboBox() {
 		return classTeacherComboBox;
 	}
 
-	public JComboBox getCourseNameComboBox() {
+	public JComboBox<String> getCourseNameComboBox() {
 		return courseNameComboBox;
 	}
 	

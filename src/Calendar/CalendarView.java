@@ -1,13 +1,12 @@
 package Calendar;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import org.json.simple.JSONObject;
 
 import component.TextContent;
 
@@ -16,7 +15,7 @@ public class CalendarView extends JPanel {
 	private JLabel startYearLabel, startMonthLabel, startDayLabel, startHourLabel, startMinuteLabel, startSecondLabel,
 			endYearLabel, endMonthLabel, endDayLabel, endHourLabel, endMinuteLabel, endSecondLabel;
 
-	private JComboBox<String> startYearComboBox, startMonthComboBox, startDayComboBox, startHourComboBox, startMinuteComboBox,
+	private JComboBox startYearComboBox, startMonthComboBox, startDayComboBox, startHourComboBox, startMinuteComboBox,
 			startSecondComboBox, endYearComboBox, endMonthComboBox, endDayComboBox, endHourComboBox, endMinuteComboBox,
 			endSecondComboBox;
 
@@ -42,19 +41,19 @@ public class CalendarView extends JPanel {
 		endMinuteLabel = new JLabel(TextContent.minuteText);
 		endSecondLabel = new JLabel(TextContent.secondText);
 
-		startYearComboBox = new JComboBox<String>();
-		startMonthComboBox = new JComboBox<String>();
-		startDayComboBox = new JComboBox<String>();
-		startHourComboBox = new JComboBox<String>();
-		startMinuteComboBox = new JComboBox<String>();
-		startSecondComboBox = new JComboBox<String>();
+		startYearComboBox = new JComboBox();
+		startMonthComboBox = new JComboBox();
+		startDayComboBox = new JComboBox();
+		startHourComboBox = new JComboBox();
+		startMinuteComboBox = new JComboBox();
+		startSecondComboBox = new JComboBox();
 
-		endYearComboBox = new JComboBox<String>();
-		endMonthComboBox = new JComboBox<String>();
-		endDayComboBox = new JComboBox<String>();
-		endHourComboBox = new JComboBox<String>();
-		endMinuteComboBox = new JComboBox<String>();
-		endSecondComboBox = new JComboBox<String>();
+		endYearComboBox = new JComboBox();
+		endMonthComboBox = new JComboBox();
+		endDayComboBox = new JComboBox();
+		endHourComboBox = new JComboBox();
+		endMinuteComboBox = new JComboBox();
+		endSecondComboBox = new JComboBox();
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		this.setLayout(groupLayout);
@@ -159,8 +158,9 @@ public class CalendarView extends JPanel {
 		endSecondComboBox.setEnabled(true);
 	}
 	
-	public Map<String,Object> getStartCalendarString() {
-		Map<String, Object> jsonObject=new HashMap<>();
+	
+	public JSONObject getStartCalendarJSON() {
+		JSONObject jsonObject=new JSONObject();
 		
 		String startCalendar=startYearComboBox.getSelectedItem()+"/"+
 				 startMonthComboBox.getSelectedItem()+"/"+
@@ -174,8 +174,8 @@ public class CalendarView extends JPanel {
 		return jsonObject;
 	}
 	
-	public Map<String, Object> getEndCalendarJSON() {
-		Map<String, Object> jsonObject=new HashMap<>();
+	public JSONObject getEndCalendarJSON() {
+JSONObject jsonObject=new JSONObject();
 		
 		String endCalendar=endYearComboBox.getSelectedItem()+"/"+
 				 endMonthComboBox.getSelectedItem()+"/"+
@@ -189,99 +189,99 @@ public class CalendarView extends JPanel {
 		return jsonObject;
 	}
 	
-	public JComboBox<String> getStartYearComboBox() {
+	public JComboBox getStartYearComboBox() {
 		return startYearComboBox;
 	}
 
-	public JComboBox<String> getStartMonthComboBox() {
+	public JComboBox getStartMonthComboBox() {
 		return startMonthComboBox;
 	}
 
-	public JComboBox<String> getStartDayComboBox() {
+	public JComboBox getStartDayComboBox() {
 		return startDayComboBox;
 	}
 
-	public JComboBox<String> getStartHourComboBox() {
+	public JComboBox getStartHourComboBox() {
 		return startHourComboBox;
 	}
 
-	public JComboBox<String> getStartMinuteComboBox() {
+	public JComboBox getStartMinuteComboBox() {
 		return startMinuteComboBox;
 	}
 
-	public JComboBox<String> getStartSecondComboBox() {
+	public JComboBox getStartSecondComboBox() {
 		return startSecondComboBox;
 	}
 
-	public JComboBox<String> getEndYearComboBox() {
+	public JComboBox getEndYearComboBox() {
 		return endYearComboBox;
 	}
 
-	public JComboBox<String> getEndMonthComboBox() {
+	public JComboBox getEndMonthComboBox() {
 		return endMonthComboBox;
 	}
 
-	public JComboBox<String> getEndDayComboBox() {
+	public JComboBox getEndDayComboBox() {
 		return endDayComboBox;
 	}
 
-	public JComboBox<String> getEndHourComboBox() {
+	public JComboBox getEndHourComboBox() {
 		return endHourComboBox;
 	}
 
-	public JComboBox<String> getEndMinuteComboBox() {
+	public JComboBox getEndMinuteComboBox() {
 		return endMinuteComboBox;
 	}
 
-	public JComboBox<String> getEndSecondComboBox() {
+	public JComboBox getEndSecondComboBox() {
 		return endSecondComboBox;
 	}
 
-	public void setStartYearComboBox(JComboBox<String> startYearComboBox) {
+	public void setStartYearComboBox(JComboBox startYearComboBox) {
 		this.startYearComboBox = startYearComboBox;
 	}
 
-	public void setStartMonthComboBox(JComboBox<String> startMonthComboBox) {
+	public void setStartMonthComboBox(JComboBox startMonthComboBox) {
 		this.startMonthComboBox = startMonthComboBox;
 	}
 
-	public void setStartDayComboBox(JComboBox<String> startDayComboBox) {
+	public void setStartDayComboBox(JComboBox startDayComboBox) {
 		this.startDayComboBox = startDayComboBox;
 	}
 
-	public void setStartHourComboBox(JComboBox<String> startHourComboBox) {
+	public void setStartHourComboBox(JComboBox startHourComboBox) {
 		this.startHourComboBox = startHourComboBox;
 	}
 
-	public void setStartMinuteComboBox(JComboBox<String> startMinuteComboBox) {
+	public void setStartMinuteComboBox(JComboBox startMinuteComboBox) {
 		this.startMinuteComboBox = startMinuteComboBox;
 	}
 
-	public void setStartSecondComboBox(JComboBox<String> startSecondComboBox) {
+	public void setStartSecondComboBox(JComboBox startSecondComboBox) {
 		this.startSecondComboBox = startSecondComboBox;
 	}
 
-	public void setEndYearComboBox(JComboBox<String> endYearComboBox) {
+	public void setEndYearComboBox(JComboBox endYearComboBox) {
 		this.endYearComboBox = endYearComboBox;
 	}
 
-	public void setEndMonthComboBox(JComboBox<String> endMonthComboBox) {
+	public void setEndMonthComboBox(JComboBox endMonthComboBox) {
 		this.endMonthComboBox = endMonthComboBox;
 	}
 
-	public void setEndDayComboBox(JComboBox<String> endDayComboBox) {
+	public void setEndDayComboBox(JComboBox endDayComboBox) {
 		this.endDayComboBox = endDayComboBox;
 	}
 
-	public void setEndHourComboBox(JComboBox<String> endHourComboBox) {
+	public void setEndHourComboBox(JComboBox endHourComboBox) {
 		this.endHourComboBox = endHourComboBox;
 	}
 
-	public void setEndMinuteComboBox(JComboBox<String> endMinuteComboBox) {
+	public void setEndMinuteComboBox(JComboBox endMinuteComboBox) {
 		this.endMinuteComboBox = endMinuteComboBox;
 	}
 
-	public void setEndSecondComboBox(JComboBox<String> endSecondComboBox) {
+	public void setEndSecondComboBox(JComboBox endSecondComboBox) {
 		this.endSecondComboBox = endSecondComboBox;
 	}
 }

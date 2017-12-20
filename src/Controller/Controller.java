@@ -8,17 +8,17 @@ import javax.swing.JPanel;
 
 import org.json.simple.JSONObject;
 
+import Calendar.Calendar;
 import Calendar.CalendarController;
-import Model.LeaveJSONModel;
+
 import Model.Model;
 import View.View;
 
 public class Controller {
 	private Model model;
-	private LeaveJSONModel leaveJSONModel;
 	private View view;
 	
-	private CalendarController calendarController=null;
+	private Calendar calendar=null;
 
 	private Controller() {
 	}
@@ -30,19 +30,20 @@ public class Controller {
 	public void initController() {
 		initLeaveJSONToLayout();
 		initViewListener();
+		disableButtomPanel();
 	}
 	
 	
 	private void initLeaveJSONToLayout() {
-		readJSONToComboBox(view.getJobTitleComboBox(),model.getInputLeaveData().getJobTitle());
-		readJSONToComboBox(view.getFillInPeopleComboBox(), model.getInputLeaveData().getTeacherName());
-		readJSONToComboBox(view.getBusinessAgentComboBox(),model.getInputLeaveData().getTeacherName());
+		readJSONToComboBox(view.getJobTitleComboBox(),model.getInputLeaveData().getJobTitle());;
+		readJSONToComboBox(view.getFillInPeopleComboBox(), model.getInputLeaveData().getEmployeeName());
+		readJSONToComboBox(view.getBusinessAgentComboBox(),model.getInputLeaveData().getEmployeeName());
 		readJSONToComboBox(view.getLeaveStateComboBox(), model.getInputLeaveData().getLeaveState());
-		readJSONToComboBox(view.getCourseAgentComboBox(), model.getInputLeaveData().getTeacherName());
+		readJSONToComboBox(view.getCourseAgentComboBox(), model.getInputLeaveData().getEmployeeName());
 		readJSONToComboBox(view.getClassNameComboBox(), model.getInputLeaveData().getClassName());
 		readJSONToComboBox(view.getClassTimeComboBox(), model.getInputLeaveData().getClassTime());
 		readJSONToComboBox(view.getClassTeacherComboBox(), model.getInputLeaveData().getClassTeacherName());
-		readJSONToComboBox(view.getCourseNameComboBox(), model.getInputLeaveData().getCourse());
+		readJSONToComboBox(view.getCourseNameComboBox(), model.getInputLeaveData().getCourseName());
 	}
 	
 	private void initViewListener() {
@@ -52,34 +53,38 @@ public class Controller {
 	}
 	
 	private void readJSONToComboBox(JComboBox<String> jComboBox,List<String> list) {
-		
 		for(String element:list)
 			jComboBox.addItem(element);
 	}
 	
 	private void pressEnterButton() {
-		model.pressEnterButtonState(view.pressEnterButtonState(),calendarController.getCalendarJSON());
+		model.pressEnterButtonState(view.pressEnterButtonState(),calendar.getCalendarJSON());
+		disableTopAndMiddlePanel();
+		enableButtomPanel();
 	}	
 	
 	private void pressInsertButton() {
 		model.pressInsertButtonState(view.pressInsertButtonState());
+		
 	}
 
 	private void pressFinishButton() {
 		model.pressFinishButtonState();
+		enableTopAndMiddlePanel();
+		disableButtomPanel();
 	}
 	
 	public JSONObject getCalendar() {
-		return calendarController.getCalendarJSON();
+		return calendar.getCalendarJSON();
 	}
 	
 	public void disableTopAndMiddlePanel() {
-		calendarController.disableLayout();
+		calendar.disableLayout();
 		view.disableTopAndMiddlePanel();
 	}
 	
 	public void enableTopAndMiddlePanel() {
-		calendarController.enableLayout();
+		calendar.enableLayout();
 		view.enableTopAndMiddlePanel();
 		
 	}
@@ -96,19 +101,16 @@ public class Controller {
 		this.model=model;
 	}
 	
-	public void setJSONModel(LeaveJSONModel leaveJSONModel) {
-		this.leaveJSONModel = leaveJSONModel;
-	}
 
 	public void setView(View view) {
 		this.view = view;
 	}
 	
-	public void setCalendarController(CalendarController calendarController) {
-		this.calendarController=calendarController;
+	public void setCalendar(Calendar calendar) {
+		this.calendar=calendar;
 	}
 	
 	public JPanel getCalendarView() {
-		return calendarController.getCalendarView();
+		return calendar.getCalendarView();
 	}
 }
