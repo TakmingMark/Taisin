@@ -11,7 +11,7 @@ public class CalendarController {
 	private CalendarJSONModel calendarJSONModel;
 	private CalendarView calendarView;
 	
-	private CalendarController() {
+	protected CalendarController() {
 	}
 	
 	public static CalendarController getCalendarControllerObject() {
