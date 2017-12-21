@@ -1,9 +1,9 @@
-package component;
+package Calendar;
 
 
 import java.util.List;
 
-public class InputCalendarDataFormat {
+public class InputCalendarDataComponent {
 	private List<String> yearList;
 	private List<String> monthList;
 	private List<String> dayList;

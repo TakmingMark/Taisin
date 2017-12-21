@@ -10,13 +10,9 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
-import component.InputCalendarDataFormat;
-import component.InputLeaveDataFormat;
-
-
 public class CalendarModel {
 	
-	private InputCalendarDataFormat inputCalendarDataFormat;
+	private InputCalendarDataComponent inputCalendarDataFormat;
 	
 	private CalendarModel() {
 		 initCalendarModel();
@@ -38,8 +34,8 @@ public class CalendarModel {
 						(new BufferedReader(new InputStreamReader(
 			            new FileInputStream("json/calendar.json"),"UTF-8")));
 
-				inputCalendarDataFormat= new Gson().fromJson(bufferedReader,InputCalendarDataFormat.class);
-						new ArrayList<InputCalendarDataFormat>();
+				inputCalendarDataFormat= new Gson().fromJson(bufferedReader,InputCalendarDataComponent.class);
+						new ArrayList<InputCalendarDataComponent>();
 				
 			} catch (IOException e) {
 				e.printStackTrace();
