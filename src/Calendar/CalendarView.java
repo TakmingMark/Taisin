@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import org.json.simple.JSONObject;
 
-import component.TextContent;
+import Component.TextContent;
 
 public class CalendarView extends JPanel {
 

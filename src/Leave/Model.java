@@ -1,4 +1,4 @@
-package Model;
+package Leave;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -16,8 +16,9 @@ import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import component.InputLeaveDataComponent;
-import component.OutputLeaveDataComponent;
+
+import Component.InputLeaveDataComponent;
+import Component.OutputLeaveDataComponent;
 
 
 public class Model {

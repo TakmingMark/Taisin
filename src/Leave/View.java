@@ -1,7 +1,10 @@
-package View;
+package Leave;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -9,19 +12,23 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import org.jdatepicker.JDatePicker;
 import org.json.simple.JSONObject;
 
-import component.TextContent;
+import Component.TextContent;
 
 public class View {
-	private JFrame jFrame;
-	private JPanel jPanel,topPanel,middlePanel,buttomPanel;
+	private JFrame frame;
+	private JPanel panel,leftPanel,leftTopPanel,leftMiddlePanel,leftButtomPanel,centerPanel,rightPanel;
 	private JPanel calendarPanel;
 	private JLabel jobTitleLabel,leavePeriodLabel,fillInPeopleLabel,
 					eventDescriptionLabel,leaveStateLabel,businessAgentLabel,
@@ -35,7 +42,8 @@ public class View {
 	
 	private JButton enterButton,insertButton,finishButton;
 	
-	private JDatePicker datePicker;
+	private JSeparator jSeparator;
+	private JTable table;
 	
 	private View() {
 		
@@ -46,11 +54,14 @@ public class View {
 	}
 	
 	public void initView() {
-		jFrame=new JFrame("Taisin");
-		jPanel=new JPanel();
-		topPanel=new JPanel();
-		middlePanel=new JPanel();
-		buttomPanel=new JPanel();
+		frame=new JFrame("Taisin");
+		panel=new JPanel();
+		leftPanel=new JPanel();
+		leftTopPanel=new JPanel();
+		leftMiddlePanel=new JPanel();
+		leftButtomPanel=new JPanel();
+		centerPanel=new JPanel();
+		rightPanel=new JPanel();
 		jobTitleLabel=new JLabel(TextContent.jobTitleText);
 		leavePeriodLabel=new JLabel(TextContent.leavePeriodText);
 		fillInPeopleLabel=new JLabel(TextContent.fillInPeopleText);
@@ -81,93 +92,102 @@ public class View {
 		insertButton=new JButton(TextContent.insertText);
 		finishButton=new JButton(TextContent.finishText);
 		
-		topPanel.setBorder(new TitledBorder
+		jSeparator=new JSeparator(SwingConstants.VERTICAL);
+				
+		leftTopPanel.setBorder(new TitledBorder
 				(new EtchedBorder(),TextContent.topPanelText,TitledBorder.LEFT,TitledBorder.TOP));
-		buttomPanel.setBorder(new TitledBorder
+		leftButtomPanel.setBorder(new TitledBorder
 				(new EtchedBorder(),TextContent.buttomPanelText,TitledBorder.LEFT,TitledBorder.TOP));
 		
 		eventDescriptionTextArea.setLineWrap(true);       
 		eventDescriptionTextArea.setWrapStyleWord(true);
-		jFrame.setLocation(300, 400);
-		jPanel.setPreferredSize(new Dimension(500, 400));
+		
+		jSeparator.setBackground(Color.BLACK);
+		jSeparator.setForeground(Color.BLACK);
+			
+		frame.setLocation(50, 200);
+		
+		leftPanel.setPreferredSize(new Dimension(500, 400));
+		centerPanel.setPreferredSize(new Dimension(100, 400));
+		panel.setPreferredSize(new Dimension(1300, 400));
 		
 		
-		GroupLayout topGroupLayout=new GroupLayout(topPanel);
-		topPanel.setLayout(topGroupLayout);;
+		GroupLayout leftTopGroupLayout=new GroupLayout(leftTopPanel);
+		leftTopPanel.setLayout(leftTopGroupLayout);;
 
-		topGroupLayout.setHorizontalGroup(
-				topGroupLayout.createSequentialGroup()
-					.addGroup(topGroupLayout.createParallelGroup()
-							.addGroup(topGroupLayout.createSequentialGroup()
+		leftTopGroupLayout.setHorizontalGroup(
+				leftTopGroupLayout.createSequentialGroup()
+					.addGroup(leftTopGroupLayout.createParallelGroup()
+							.addGroup(leftTopGroupLayout.createSequentialGroup()
 									.addGap(20)
-									.addGroup(topGroupLayout.createParallelGroup()
+									.addGroup(leftTopGroupLayout.createParallelGroup()
 											.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(fillInPeopleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									.addGap(10)
-									.addGroup(topGroupLayout.createParallelGroup()
+									.addGroup(leftTopGroupLayout.createParallelGroup()
 											.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(fillInPeopleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									.addGap(40)
-									.addGroup(topGroupLayout.createParallelGroup()
+									.addGroup(leftTopGroupLayout.createParallelGroup()
 											.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(businessAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									.addGap(10)
-									.addGroup(topGroupLayout.createParallelGroup()
+									.addGroup(leftTopGroupLayout.createParallelGroup()
 											.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(businessAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									)
-							.addGroup(topGroupLayout.createSequentialGroup()
-									.addGroup(topGroupLayout.createParallelGroup()
+							.addGroup(leftTopGroupLayout.createSequentialGroup()
+									.addGroup(leftTopGroupLayout.createParallelGroup()
 											.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									.addGap(5)
-									.addGroup(topGroupLayout.createParallelGroup()
+									.addGroup(leftTopGroupLayout.createParallelGroup()
 											.addComponent(calendarPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									)
 							)
 					);
-		topGroupLayout.setVerticalGroup(
-				topGroupLayout.createSequentialGroup()
+		leftTopGroupLayout.setVerticalGroup(
+				leftTopGroupLayout.createSequentialGroup()
 					.addGap(10)
-					.addGroup(topGroupLayout.createParallelGroup()
+					.addGroup(leftTopGroupLayout.createParallelGroup()
 							.addComponent(jobTitleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(jobTitleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(leaveStateLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(leaveStateComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							)
 					.addGap(10)
-					.addGroup(topGroupLayout.createParallelGroup()
+					.addGroup(leftTopGroupLayout.createParallelGroup()
 							.addComponent(fillInPeopleLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(fillInPeopleComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(businessAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(businessAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							)
 					.addGap(10)
-					.addGroup(topGroupLayout.createParallelGroup(Alignment.CENTER)
+					.addGroup(leftTopGroupLayout.createParallelGroup(Alignment.CENTER)
 							.addComponent(leavePeriodLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(calendarPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							)		
 					.addGap(10)
 				);
 		
-		GroupLayout middleGroupLayout=new GroupLayout(middlePanel);
-		middlePanel.setLayout(middleGroupLayout);
-		middleGroupLayout.setHorizontalGroup(
-				middleGroupLayout.createSequentialGroup()
+		GroupLayout leftMiddleGroupLayout=new GroupLayout(leftMiddlePanel);
+		leftMiddlePanel.setLayout(leftMiddleGroupLayout);
+		leftMiddleGroupLayout.setHorizontalGroup(
+				leftMiddleGroupLayout.createSequentialGroup()
 					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
 	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(middleGroupLayout.createParallelGroup()
-							.addGroup(middleGroupLayout.createSequentialGroup()
-									.addGroup(middleGroupLayout.createParallelGroup()
+					.addGroup(leftMiddleGroupLayout.createParallelGroup()
+							.addGroup(leftMiddleGroupLayout.createSequentialGroup()
+									.addGroup(leftMiddleGroupLayout.createParallelGroup()
 											.addComponent(eventDescriptionLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									.addGap(10)
-									.addGroup(middleGroupLayout.createParallelGroup()
+									.addGroup(leftMiddleGroupLayout.createParallelGroup()
 											.addComponent(eventDescriptionTextArea,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									)
@@ -175,11 +195,11 @@ public class View {
 					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
 		                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					);
-		middleGroupLayout.setVerticalGroup(
-				middleGroupLayout.createSequentialGroup()
+		leftMiddleGroupLayout.setVerticalGroup(
+				leftMiddleGroupLayout.createSequentialGroup()
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
 	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addGroup(middleGroupLayout.createParallelGroup(Alignment.CENTER)
+				.addGroup(leftMiddleGroupLayout.createParallelGroup(Alignment.CENTER)
 						.addComponent(eventDescriptionLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						.addComponent(eventDescriptionTextArea,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						)
@@ -187,32 +207,32 @@ public class View {
 	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 				);
 		
-		GroupLayout buttomGroupLayout=new GroupLayout(buttomPanel);
-		buttomPanel.setLayout(buttomGroupLayout);
-		buttomGroupLayout.setHorizontalGroup(
-				buttomGroupLayout.createSequentialGroup()
+		GroupLayout leftButtomGroupLayout=new GroupLayout(leftButtomPanel);
+		leftButtomPanel.setLayout(leftButtomGroupLayout);
+		leftButtomGroupLayout.setHorizontalGroup(
+				leftButtomGroupLayout.createSequentialGroup()
 					.addGap(20)
 					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
 	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(buttomGroupLayout.createParallelGroup()
-							.addGroup(buttomGroupLayout.createSequentialGroup()
-									.addGroup(buttomGroupLayout.createParallelGroup()
+					.addGroup(leftButtomGroupLayout.createParallelGroup()
+							.addGroup(leftButtomGroupLayout.createSequentialGroup()
+									.addGroup(leftButtomGroupLayout.createParallelGroup()
 											.addComponent(courseAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(classTimeLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									.addGap(10)
-									.addGroup(buttomGroupLayout.createParallelGroup()
+									.addGroup(leftButtomGroupLayout.createParallelGroup()
 											.addComponent(courseAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(classTimeComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									.addGap(30)
-									.addGroup(buttomGroupLayout.createParallelGroup()
+									.addGroup(leftButtomGroupLayout.createParallelGroup()
 											.addComponent(classNameLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(classTeacherLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(courseNameLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											)
 									.addGap(10)
-									.addGroup(buttomGroupLayout.createParallelGroup()
+									.addGroup(leftButtomGroupLayout.createParallelGroup()
 											.addComponent(classNameComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(classTeacherComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 											.addComponent(courseNameComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
@@ -223,26 +243,26 @@ public class View {
 		                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(20)
 					);
-		buttomGroupLayout.setVerticalGroup(
-				buttomGroupLayout.createSequentialGroup()
+		leftButtomGroupLayout.setVerticalGroup(
+				leftButtomGroupLayout.createSequentialGroup()
 				.addGap(10)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
 	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addGroup(buttomGroupLayout.createParallelGroup()
+				.addGroup(leftButtomGroupLayout.createParallelGroup()
 						.addComponent(courseAgentLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						.addComponent(courseAgentComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						.addComponent(classNameLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						.addComponent(classNameComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						)
 				.addGap(8)
-				.addGroup(buttomGroupLayout.createParallelGroup()
+				.addGroup(leftButtomGroupLayout.createParallelGroup()
 						.addComponent(classTimeLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						.addComponent(classTimeComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						.addComponent(classTeacherLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						.addComponent(classTeacherComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						)
 				.addGap(8)
-				.addGroup(buttomGroupLayout.createParallelGroup()
+				.addGroup(leftButtomGroupLayout.createParallelGroup()
 						.addComponent(courseNameLabel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 						.addComponent(courseNameComboBox,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE))
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
@@ -250,38 +270,38 @@ public class View {
 				.addGap(10)
 				);
 		
-		GroupLayout groupLayout=new GroupLayout(jPanel);
-		jPanel.setLayout(groupLayout);
-		groupLayout.setHorizontalGroup(
-				groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup()
-							.addComponent(topPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addComponent(middlePanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addComponent(buttomPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+		GroupLayout leftGroupLayout=new GroupLayout(leftPanel);
+		leftPanel.setLayout(leftGroupLayout);
+		leftGroupLayout.setHorizontalGroup(
+				leftGroupLayout.createSequentialGroup()
+					.addGroup(leftGroupLayout.createParallelGroup()
+							.addComponent(leftTopPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addComponent(leftMiddlePanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addComponent(leftButtomPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							)
 					.addGap(20)
-					.addGroup(groupLayout.createParallelGroup()
+					.addGroup(leftGroupLayout.createParallelGroup()
 							.addComponent(enterButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(insertButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							.addComponent(finishButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 							)
 					);
-		groupLayout.setVerticalGroup(
-				groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup()
-							.addComponent(topPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addGroup(groupLayout.createSequentialGroup()
+		leftGroupLayout.setVerticalGroup(
+				leftGroupLayout.createSequentialGroup()
+					.addGroup(leftGroupLayout.createParallelGroup()
+							.addComponent(leftTopPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addGroup(leftGroupLayout.createSequentialGroup()
 									.addGap(50)
 									.addComponent(enterButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 									)
 							
 							)
 					.addGap(20)
-					.addComponent(middlePanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+					.addComponent(leftMiddlePanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
-					.addGroup(groupLayout.createParallelGroup()
-							.addComponent(buttomPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(leftGroupLayout.createParallelGroup()
+							.addComponent(leftButtomPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addGroup(leftGroupLayout.createSequentialGroup()
 									.addGap(30)
 									.addComponent(insertButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 									.addGap(20)
@@ -290,10 +310,41 @@ public class View {
 							)
 					);
 		
-		jFrame.add(jPanel);
-		jFrame.pack();
-		jFrame.setVisible(true);
-		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GroupLayout centerGroupLayout=new GroupLayout(centerPanel);
+		centerPanel.setLayout(centerGroupLayout);
+
+		centerGroupLayout.setHorizontalGroup(centerGroupLayout.createSequentialGroup()
+				.addGap(20)
+				.addComponent(jSeparator)
+				);
+		centerGroupLayout.setVerticalGroup(centerGroupLayout.createSequentialGroup()
+				.addComponent(jSeparator)
+				);
+		
+		
+		GroupLayout groupLayout=new GroupLayout(panel);
+		panel.setLayout(groupLayout);
+		
+		groupLayout.setHorizontalGroup(
+				groupLayout.createSequentialGroup()
+				.addComponent(leftPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+				.addComponent(centerPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+				.addComponent(rightPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+				);
+		
+		groupLayout.setVerticalGroup(
+				groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createParallelGroup()
+						.addComponent(leftPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(centerPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(rightPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						)
+				);
+		
+		frame.add(panel);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -322,7 +373,7 @@ public class View {
 		
 	}
 	
-	public void disableTopAndMiddlePanel() {
+	public void disableLeftTopAndMiddlePanel() {
 		jobTitleComboBox.setEnabled(false);
 		fillInPeopleComboBox.setEnabled(false);
 		leaveStateComboBox.setEnabled(false);
@@ -332,7 +383,7 @@ public class View {
 		enterButton.setEnabled(false);;
 	}
 	
-	public void enableTopAndMiddlePanel() {
+	public void enableLeftTopAndMiddlePanel() {
 		jobTitleComboBox.setEnabled(true);
 		fillInPeopleComboBox.setEnabled(true);
 		leaveStateComboBox.setEnabled(true);
@@ -342,7 +393,7 @@ public class View {
 		enterButton.setEnabled(true);;
 	}
 	
-	public void disableButtomPanel() {
+	public void disableLeftButtomPanel() {
 		courseAgentComboBox.setEnabled(false);
 		classTimeComboBox.setEnabled(false);
 		classNameComboBox.setEnabled(false);
@@ -353,11 +404,10 @@ public class View {
 		finishButton.setEnabled(false);
 	}
 	
-	public void enableButtomPanel() {
+	public void enableLeftButtomPanel() {
 		courseAgentComboBox.setEnabled(true);
 		classTimeComboBox.setEnabled(true);
 		classNameComboBox.setEnabled(true);
-		classTeacherComboBox.setEnabled(true);
 		courseNameComboBox.setEnabled(true);
 		
 		insertButton.setEnabled(true);

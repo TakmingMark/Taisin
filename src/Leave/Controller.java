@@ -1,4 +1,4 @@
-package Controller;
+package Leave;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,6 @@ import org.json.simple.JSONObject;
 
 import Calendar.Calendar;
 import Calendar.CalendarController;
-
-import Model.Model;
-import View.View;
 
 public class Controller {
 	private Model model;
@@ -80,21 +77,21 @@ public class Controller {
 	
 	public void disableTopAndMiddlePanel() {
 		calendar.disableLayout();
-		view.disableTopAndMiddlePanel();
+		view.disableLeftTopAndMiddlePanel();
 	}
 	
 	public void enableTopAndMiddlePanel() {
 		calendar.enableLayout();
-		view.enableTopAndMiddlePanel();
+		view.enableLeftTopAndMiddlePanel();
 		
 	}
 	
 	public void disableButtomPanel() {
-		view.disableButtomPanel();
+		view.disableLeftButtomPanel();
 	}
 	
 	public void enableButtomPanel() {
-		view.enableButtomPanel();
+		view.enableLeftButtomPanel();
 	}
 	
 	public void setModel(Model model) {

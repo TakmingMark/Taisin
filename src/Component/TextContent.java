@@ -1,4 +1,4 @@
-package component;
+package Component;
 
 public interface TextContent {
 	String jobTitleText="職稱:";
@@ -27,4 +27,7 @@ public interface TextContent {
 	String hourText="時";
 	String minuteText="分";
 	String secondText="秒";
+	
+	String[] columnTitle= {"職稱","假別","填寫人","事務代理人","請假期間","事由","課程代理人","班導","節別","班級","課程"};
+	
 }

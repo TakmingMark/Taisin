@@ -4,9 +4,9 @@ import Calendar.Calendar;
 import Calendar.CalendarController;
 import Calendar.CalendarJSONModel;
 import Calendar.CalendarView;
-import Controller.Controller;
-import Model.Model;
-import View.View;
+import Leave.Controller;
+import Leave.Model;
+import Leave.View;
 
 public class Activity {
 
