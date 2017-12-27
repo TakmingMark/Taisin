@@ -21,23 +21,22 @@ import Component.InputLeaveDataComponent;
 import Component.OutputLeaveDataComponent;
 
 
-public class Model {
+public class LeaveModel {
 	private InputLeaveDataComponent inputLeaveData;
-	private List<OutputLeaveDataComponent> outputLeaveDataList;
+	private OutputLeaveDataComponent outputLeaveData;
 	private JSONObject leaveDataJSONObject;
 	private JSONArray agentDataJSONArray;
 	
-	private Model() {
+	private LeaveModel() {
 		initModel();
 	}
 	
-	public static Model getModelObject() {
-		return new Model();
+	public static LeaveModel getModelObject() {
+		return new LeaveModel();
 	}
 	
 	private void initModel() {
 		agentDataJSONArray=new JSONArray();
-		outputLeaveDataList=new LinkedList<>();
 		parseJSONFromLeaveFile();
 	}
 	
@@ -63,13 +62,12 @@ public class Model {
 	@SuppressWarnings("unchecked")
 	public void pressInsertButtonState(JSONObject jsonObject) {
 		this.agentDataJSONArray.add(jsonObject);
+		leaveDataJSONObject.put("agentData", agentDataJSONArray);
+		outputLeaveData= new Gson().fromJson(leaveDataJSONObject.toJSONString(), OutputLeaveDataComponent.class);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void pressFinishButtonState() {
-		leaveDataJSONObject.put("agentData", agentDataJSONArray);
-		OutputLeaveDataComponent outputLeaveData= new Gson().fromJson(leaveDataJSONObject.toJSONString(), OutputLeaveDataComponent.class);
-		outputLeaveDataList.add(outputLeaveData);
 		clearJSONAndInitLayout();
 	}
 	
@@ -82,4 +80,7 @@ public class Model {
 		return inputLeaveData;
 	}
 	
+	public OutputLeaveDataComponent getOutputLeaveData() {
+		return outputLeaveData;
+	}
 }

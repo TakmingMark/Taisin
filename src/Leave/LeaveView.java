@@ -26,10 +26,10 @@ import org.json.simple.JSONObject;
 
 import Component.TextContent;
 
-public class View {
+public class LeaveView {
 	private JFrame frame;
 	private JPanel panel,leftPanel,leftTopPanel,leftMiddlePanel,leftButtomPanel,centerPanel,rightPanel;
-	private JPanel calendarPanel;
+	private JPanel calendarPanel,tablePanel;
 	private JLabel jobTitleLabel,leavePeriodLabel,fillInPeopleLabel,
 					eventDescriptionLabel,leaveStateLabel,businessAgentLabel,
 					courseAgentLabel,classTimeLabel,classNameLabel,
@@ -43,14 +43,13 @@ public class View {
 	private JButton enterButton,insertButton,finishButton;
 	
 	private JSeparator jSeparator;
-	private JTable table;
 	
-	private View() {
+	private LeaveView() {
 		
 	}
 	
-	public static View getViewObject() {
-		return new View();
+	public static LeaveView getViewObject() {
+		return new LeaveView();
 	}
 	
 	public void initView() {
@@ -109,7 +108,8 @@ public class View {
 		
 		leftPanel.setPreferredSize(new Dimension(500, 400));
 		centerPanel.setPreferredSize(new Dimension(100, 400));
-		panel.setPreferredSize(new Dimension(1300, 400));
+		rightPanel.setPreferredSize(new Dimension(800, 400));
+		panel.setPreferredSize(new Dimension(1400, 400));
 		
 		
 		GroupLayout leftTopGroupLayout=new GroupLayout(leftTopPanel);
@@ -321,6 +321,15 @@ public class View {
 				.addComponent(jSeparator)
 				);
 		
+		GroupLayout rigthtGroupLayout=new GroupLayout(rightPanel);
+		rightPanel.setLayout(rigthtGroupLayout);
+
+		rigthtGroupLayout.setHorizontalGroup(rigthtGroupLayout.createSequentialGroup()
+				.addComponent(tablePanel)
+				);
+		rigthtGroupLayout.setVerticalGroup(rigthtGroupLayout.createSequentialGroup()
+				.addComponent(tablePanel)
+				);
 		
 		GroupLayout groupLayout=new GroupLayout(panel);
 		panel.setLayout(groupLayout);
@@ -328,7 +337,7 @@ public class View {
 		groupLayout.setHorizontalGroup(
 				groupLayout.createSequentialGroup()
 				.addComponent(leftPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-				.addComponent(centerPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+				.addComponent(centerPanel,0,60,GroupLayout.PREFERRED_SIZE)
 				.addComponent(rightPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
 				);
 		
@@ -453,7 +462,11 @@ public class View {
 	public void setCalendarPanel(JPanel calendarPanel) {
 		this.calendarPanel=calendarPanel;
 	}
-
+	
+	public void setTablePanel(JPanel tablePanel) {
+		this.tablePanel=tablePanel;
+	}
+	
 	public JButton getEnterButton() {
 		return enterButton;
 	}

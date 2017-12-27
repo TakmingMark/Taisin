@@ -10,18 +10,19 @@ import org.json.simple.JSONObject;
 
 import Calendar.Calendar;
 import Calendar.CalendarController;
+import Table.Table;
 
-public class Controller {
-	private Model model;
-	private View view;
+public class LeaveController {
+	private LeaveModel model;
+	private LeaveView view;
 	
 	private Calendar calendar=null;
-
-	private Controller() {
+	private Table table=null;
+	private LeaveController() {
 	}
 	
-	public static Controller getControllerObject() {
-		return new Controller();
+	public static LeaveController getControllerObject() {
+		return new LeaveController();
 	}
 	
 	public void initController() {
@@ -62,7 +63,7 @@ public class Controller {
 	
 	private void pressInsertButton() {
 		model.pressInsertButtonState(view.pressInsertButtonState());
-		
+		table.insertLeaveData(model.getOutputLeaveData());
 	}
 
 	private void pressFinishButton() {
@@ -94,12 +95,12 @@ public class Controller {
 		view.enableLeftButtomPanel();
 	}
 	
-	public void setModel(Model model) {
+	public void setModel(LeaveModel model) {
 		this.model=model;
 	}
 	
 
-	public void setView(View view) {
+	public void setView(LeaveView view) {
 		this.view = view;
 	}
 	
@@ -110,4 +111,17 @@ public class Controller {
 	public JPanel getCalendarView() {
 		return calendar.getCalendarView();
 	}
+
+	public Table getTable() {
+		return table;
+	}
+	
+	public JPanel getTableView() {
+		return table.getView();
+	}
+
+	public void setTable(Table table) {
+		this.table = table;
+	}
+	
 }

@@ -93,7 +93,7 @@ public class OutputLeaveDataComponent {
 	}
 
 
-	class AgentData{
+	public class AgentData{
 		private String courseName;
 		private String courseAgent;
 		private String className;
