@@ -16,18 +16,19 @@ public class Activity {
 	}
 
 	private void initTaisin() {
-		LeaveView view=LeaveView.getViewObject();
-		LeaveModel model=LeaveModel.getModelObject();
-		LeaveController controller=LeaveController.getControllerObject();
+		LeaveView leaveView=LeaveView.getLeaveViewObject();
+		LeaveModel leaveModel=LeaveModel.getModelObject();
+		LeaveController leaveController=LeaveController.getControllerObject();
 		
-		controller.setModel(model);
-		controller.setView(view);
-		controller.setCalendar(Calendar.getCalendarObject());
-		controller.setTable(Table.getTableObject());
+		leaveController.setModel(leaveModel);
+		leaveController.setView(leaveView);
+		leaveController.setCalendar(Calendar.getCalendarObject());
+		leaveController.setTable(Table.getTableObject());
 		
-		view.setCalendarPanel(controller.getCalendarView());
-		view.setTablePanel(controller.getTableView());
-		view.initView();
-		controller.initController();
+		leaveView.setCalendarPanel(leaveController.getCalendarView());
+		leaveView.setTablePanel(leaveController.getTableView());
+		
+		leaveView.initLeaveView();
+		leaveController.initController();
 	}
 }

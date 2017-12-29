@@ -16,8 +16,9 @@ public class LeaveController {
 	private LeaveModel model;
 	private LeaveView view;
 	
-	private Calendar calendar=null;
-	private Table table=null;
+	private Calendar calendar;
+	private Table table;
+	
 	private LeaveController() {
 	}
 	
@@ -117,7 +118,7 @@ public class LeaveController {
 	}
 	
 	public JPanel getTableView() {
-		return table.getView();
+		return table.getTableView();
 	}
 
 	public void setTable(Table table) {

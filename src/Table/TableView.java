@@ -30,7 +30,7 @@ public class TableView extends JPanel{
 		this.add(new JScrollPane(table));
 	}
 	
-	public void setTableModell(TableModel model) {
+	public void setTableModel(TableModel model) {
 		table.setModel(model);
 
 		table.setPreferredScrollableViewportSize(new Dimension(790, 400));

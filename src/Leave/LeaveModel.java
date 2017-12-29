@@ -28,14 +28,14 @@ public class LeaveModel {
 	private JSONArray agentDataJSONArray;
 	
 	private LeaveModel() {
-		initModel();
+		initLeaveModel();
 	}
 	
 	public static LeaveModel getModelObject() {
 		return new LeaveModel();
 	}
 	
-	private void initModel() {
+	private void initLeaveModel() {
 		agentDataJSONArray=new JSONArray();
 		parseJSONFromLeaveFile();
 	}

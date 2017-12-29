@@ -42,25 +42,138 @@ public class LeaveView {
 	
 	private JButton enterButton,insertButton,finishButton;
 	
-	private JSeparator jSeparator;
+	private JSeparator separator;
 	
 	private LeaveView() {
 		
 	}
 	
-	public static LeaveView getViewObject() {
+	public static LeaveView getLeaveViewObject() {
 		return new LeaveView();
 	}
 	
-	public void initView() {
+	public void initLeaveView() {
 		frame=new JFrame("Taisin");
 		panel=new JPanel();
+
+		frame.setLocation(50, 200);
+		panel.setPreferredSize(new Dimension(1400, 400));
+		
+		initLeftLeaveView();
+		initCenterLeaveView();
+		initRightLeaveView();
+		
+		GroupLayout groupLayout=new GroupLayout(panel);
+		panel.setLayout(groupLayout);
+		
+		groupLayout.setHorizontalGroup(
+				groupLayout.createSequentialGroup()
+				.addComponent(leftPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+				.addComponent(centerPanel,0,60,GroupLayout.PREFERRED_SIZE)
+				.addComponent(rightPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+				);
+		
+		groupLayout.setVerticalGroup(
+				groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createParallelGroup()
+						.addComponent(leftPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(centerPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						.addComponent(rightPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+						)
+				);
+		
+		frame.add(panel);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public void initLeftLeaveView() {
+		initLeftTopLeaveView();
+		initLeftMiddleLeaveView();
+		initLeftButtomLeaveView();
+		
 		leftPanel=new JPanel();
-		leftTopPanel=new JPanel();
-		leftMiddlePanel=new JPanel();
-		leftButtomPanel=new JPanel();
+
+		GroupLayout leftGroupLayout=new GroupLayout(leftPanel);
+		leftPanel.setLayout(leftGroupLayout);
+		leftGroupLayout.setHorizontalGroup(
+				leftGroupLayout.createSequentialGroup()
+					.addGroup(leftGroupLayout.createParallelGroup()
+							.addComponent(leftTopPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addComponent(leftMiddlePanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addComponent(leftButtomPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							)
+					.addGap(20)
+					.addGroup(leftGroupLayout.createParallelGroup()
+							.addComponent(enterButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addComponent(insertButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addComponent(finishButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							)
+					);
+		leftGroupLayout.setVerticalGroup(
+				leftGroupLayout.createSequentialGroup()
+					.addGroup(leftGroupLayout.createParallelGroup()
+							.addComponent(leftTopPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addGroup(leftGroupLayout.createSequentialGroup()
+									.addGap(50)
+									.addComponent(enterButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+									)
+							)
+					.addGap(20)
+					.addComponent(leftMiddlePanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+					.addGap(20)
+					.addGroup(leftGroupLayout.createParallelGroup()
+							.addComponent(leftButtomPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+							.addGroup(leftGroupLayout.createSequentialGroup()
+									.addGap(30)
+									.addComponent(insertButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+									.addGap(20)
+									.addComponent(finishButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+									)
+							)
+					);
+	}
+	
+	public void initCenterLeaveView() {
 		centerPanel=new JPanel();
+		
+		separator=new JSeparator(SwingConstants.VERTICAL);
+		
+		separator.setBackground(Color.BLACK);
+		separator.setForeground(Color.BLACK);
+		centerPanel.setPreferredSize(new Dimension(100, 400));
+		
+		GroupLayout centerGroupLayout=new GroupLayout(centerPanel);
+		centerPanel.setLayout(centerGroupLayout);
+
+		centerGroupLayout.setHorizontalGroup(centerGroupLayout.createSequentialGroup()
+				.addGap(20)
+				.addComponent(separator)
+				);
+		centerGroupLayout.setVerticalGroup(centerGroupLayout.createSequentialGroup()
+				.addComponent(separator)
+				);
+	}
+	
+	public void initRightLeaveView() {
 		rightPanel=new JPanel();
+		
+		rightPanel.setPreferredSize(new Dimension(800, 400));
+		GroupLayout rigthtGroupLayout=new GroupLayout(rightPanel);
+		rightPanel.setLayout(rigthtGroupLayout);
+
+		rigthtGroupLayout.setHorizontalGroup(rigthtGroupLayout.createSequentialGroup()
+				.addComponent(tablePanel)
+				);
+		rigthtGroupLayout.setVerticalGroup(rigthtGroupLayout.createSequentialGroup()
+				.addComponent(tablePanel)
+				);
+	}
+	
+	public void initLeftTopLeaveView() {
+		leftTopPanel=new JPanel();
+		
 		jobTitleLabel=new JLabel(TextContent.jobTitleText);
 		leavePeriodLabel=new JLabel(TextContent.leavePeriodText);
 		fillInPeopleLabel=new JLabel(TextContent.fillInPeopleText);
@@ -68,49 +181,15 @@ public class LeaveView {
 		leaveStateLabel=new JLabel(TextContent.leaveStateText);
 		businessAgentLabel=new JLabel(TextContent.businessAgentText);
 		
-		courseAgentLabel=new JLabel(TextContent.courseAgentText);
-		classTimeLabel=new JLabel(TextContent.classTimeText);
-		classNameLabel=new JLabel(TextContent.classNameText);
-		classTeacherLabel=new JLabel(TextContent.classTeacherText);
-		courseNameLabel=new JLabel(TextContent.courseNameText);
-		
 		jobTitleComboBox=new JComboBox<String>();
 		fillInPeopleComboBox=new JComboBox<String>();
 		leaveStateComboBox=new JComboBox<String>();
 		businessAgentComboBox=new JComboBox<String>();
 		
-		courseAgentComboBox=new JComboBox<String>();
-		classTimeComboBox=new JComboBox<String>();
-		classNameComboBox=new JComboBox<String>();
-		classTeacherComboBox=new JComboBox<String>();
-		courseNameComboBox=new JComboBox<String>();
-		
-		eventDescriptionTextArea=new JTextArea(3,25);
-		
 		enterButton=new JButton(TextContent.enterText);
-		insertButton=new JButton(TextContent.insertText);
-		finishButton=new JButton(TextContent.finishText);
 		
-		jSeparator=new JSeparator(SwingConstants.VERTICAL);
-				
 		leftTopPanel.setBorder(new TitledBorder
 				(new EtchedBorder(),TextContent.topPanelText,TitledBorder.LEFT,TitledBorder.TOP));
-		leftButtomPanel.setBorder(new TitledBorder
-				(new EtchedBorder(),TextContent.buttomPanelText,TitledBorder.LEFT,TitledBorder.TOP));
-		
-		eventDescriptionTextArea.setLineWrap(true);       
-		eventDescriptionTextArea.setWrapStyleWord(true);
-		
-		jSeparator.setBackground(Color.BLACK);
-		jSeparator.setForeground(Color.BLACK);
-			
-		frame.setLocation(50, 200);
-		
-		leftPanel.setPreferredSize(new Dimension(500, 400));
-		centerPanel.setPreferredSize(new Dimension(100, 400));
-		rightPanel.setPreferredSize(new Dimension(800, 400));
-		panel.setPreferredSize(new Dimension(1400, 400));
-		
 		
 		GroupLayout leftTopGroupLayout=new GroupLayout(leftTopPanel);
 		leftTopPanel.setLayout(leftTopGroupLayout);;
@@ -174,6 +253,15 @@ public class LeaveView {
 							)		
 					.addGap(10)
 				);
+	}
+	
+	public void initLeftMiddleLeaveView() {
+		leftMiddlePanel=new JPanel();
+		
+		eventDescriptionTextArea=new JTextArea(3,25);
+		
+		eventDescriptionTextArea.setLineWrap(true);       
+		eventDescriptionTextArea.setWrapStyleWord(true);
 		
 		GroupLayout leftMiddleGroupLayout=new GroupLayout(leftMiddlePanel);
 		leftMiddlePanel.setLayout(leftMiddleGroupLayout);
@@ -206,6 +294,25 @@ public class LeaveView {
 				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
 	                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 				);
+	}
+	
+	public void initLeftButtomLeaveView() {
+		leftButtomPanel=new JPanel();
+		
+		courseAgentLabel=new JLabel(TextContent.courseAgentText);
+		classTimeLabel=new JLabel(TextContent.classTimeText);
+		classNameLabel=new JLabel(TextContent.classNameText);
+		classTeacherLabel=new JLabel(TextContent.classTeacherText);
+		courseNameLabel=new JLabel(TextContent.courseNameText);
+		
+		courseAgentComboBox=new JComboBox<String>();
+		classTimeComboBox=new JComboBox<String>();
+		classNameComboBox=new JComboBox<String>();
+		classTeacherComboBox=new JComboBox<String>();
+		courseNameComboBox=new JComboBox<String>();
+		
+		insertButton=new JButton(TextContent.insertText);
+		finishButton=new JButton(TextContent.finishText);
 		
 		GroupLayout leftButtomGroupLayout=new GroupLayout(leftButtomPanel);
 		leftButtomPanel.setLayout(leftButtomGroupLayout);
@@ -270,92 +377,10 @@ public class LeaveView {
 				.addGap(10)
 				);
 		
-		GroupLayout leftGroupLayout=new GroupLayout(leftPanel);
-		leftPanel.setLayout(leftGroupLayout);
-		leftGroupLayout.setHorizontalGroup(
-				leftGroupLayout.createSequentialGroup()
-					.addGroup(leftGroupLayout.createParallelGroup()
-							.addComponent(leftTopPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addComponent(leftMiddlePanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addComponent(leftButtomPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							)
-					.addGap(20)
-					.addGroup(leftGroupLayout.createParallelGroup()
-							.addComponent(enterButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addComponent(insertButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addComponent(finishButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							)
-					);
-		leftGroupLayout.setVerticalGroup(
-				leftGroupLayout.createSequentialGroup()
-					.addGroup(leftGroupLayout.createParallelGroup()
-							.addComponent(leftTopPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addGroup(leftGroupLayout.createSequentialGroup()
-									.addGap(50)
-									.addComponent(enterButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-									)
-							
-							)
-					.addGap(20)
-					.addComponent(leftMiddlePanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-					.addGap(20)
-					.addGroup(leftGroupLayout.createParallelGroup()
-							.addComponent(leftButtomPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-							.addGroup(leftGroupLayout.createSequentialGroup()
-									.addGap(30)
-									.addComponent(insertButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-									.addGap(20)
-									.addComponent(finishButton,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-									)
-							)
-					);
-		
-		GroupLayout centerGroupLayout=new GroupLayout(centerPanel);
-		centerPanel.setLayout(centerGroupLayout);
-
-		centerGroupLayout.setHorizontalGroup(centerGroupLayout.createSequentialGroup()
-				.addGap(20)
-				.addComponent(jSeparator)
-				);
-		centerGroupLayout.setVerticalGroup(centerGroupLayout.createSequentialGroup()
-				.addComponent(jSeparator)
-				);
-		
-		GroupLayout rigthtGroupLayout=new GroupLayout(rightPanel);
-		rightPanel.setLayout(rigthtGroupLayout);
-
-		rigthtGroupLayout.setHorizontalGroup(rigthtGroupLayout.createSequentialGroup()
-				.addComponent(tablePanel)
-				);
-		rigthtGroupLayout.setVerticalGroup(rigthtGroupLayout.createSequentialGroup()
-				.addComponent(tablePanel)
-				);
-		
-		GroupLayout groupLayout=new GroupLayout(panel);
-		panel.setLayout(groupLayout);
-		
-		groupLayout.setHorizontalGroup(
-				groupLayout.createSequentialGroup()
-				.addComponent(leftPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-				.addComponent(centerPanel,0,60,GroupLayout.PREFERRED_SIZE)
-				.addComponent(rightPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-				);
-		
-		groupLayout.setVerticalGroup(
-				groupLayout.createSequentialGroup()
-				.addGroup(groupLayout.createParallelGroup()
-						.addComponent(leftPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-						.addComponent(centerPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-						.addComponent(rightPanel,0,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-						)
-				);
-		
-		frame.add(panel);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		leftButtomPanel.setBorder(new TitledBorder
+				(new EtchedBorder(),TextContent.buttomPanelText,TitledBorder.LEFT,TitledBorder.TOP));
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public JSONObject pressEnterButtonState() {
 		JSONObject jsonObject=new JSONObject();
@@ -478,6 +503,4 @@ public class LeaveView {
 	public JButton getFinishButton() {
 		return finishButton;
 	}
-	
-
 }

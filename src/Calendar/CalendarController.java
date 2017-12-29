@@ -12,6 +12,7 @@ public class CalendarController {
 	private CalendarView calendarView;
 	
 	protected CalendarController() {
+		initCalendarController();
 	}
 	
 	public static CalendarController getCalendarControllerObject() {
@@ -19,6 +20,9 @@ public class CalendarController {
 	}
 	
 	public void initCalendarController() {
+		calendarView=CalendarView.getCalendarViewObject();
+		calendarJSONModel=CalendarJSONModel.getCalendarJSONModelObject();
+	
 		initCalendarJSONToLayout();
 	}
 	
@@ -50,13 +54,8 @@ public class CalendarController {
 	public void enableLayout() {
 		calendarView.enable();
 	}
-	public JSONObject getCalendarJSON() {
-		JSONObject jsonObject=new JSONObject();
-		
-		jsonObject=calendarView.getStartCalendarJSON();
-		jsonObject.putAll(calendarView.getEndCalendarJSON());
-		
-		return jsonObject;
+	public JSONObject getCalendarViewJSON() {
+		return calendarView.getCalendarViewJSON();
 	}
 	
 	public void setCalendarJSONModel(CalendarJSONModel calendarJSONModel) {

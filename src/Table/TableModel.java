@@ -6,20 +6,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.xml.soap.Text;
 
 import Component.OutputLeaveDataComponent;
+import Component.TextContent;
 import Component.OutputLeaveDataComponent.AgentData;
 
 public class TableModel extends DefaultTableModel{
 	
-	private TableModel(String[] columnNames) {
-		super(null,columnNames);
+	private TableModel() {
+		super(null,TextContent.columnNames);
+		initTableModel();
 	}
 	
-	public Class getColumnClass(int columnIndex) {
-        return String.class;
+	public static TableModel getModelOject() {
+		return new TableModel();
 	}
 	
-	public static TableModel getModelOject(String[] columnNames) {
-		return new TableModel(columnNames);
+	private void initTableModel() {
 	}
 	
 	@Override
@@ -30,6 +31,10 @@ public class TableModel extends DefaultTableModel{
 	@Override
 	public void removeRow(int selectedRow) {
 		super.removeRow(selectedRow);
+	}
+	
+	public Class getColumnClass(int columnIndex) {
+        return String.class;
 	}
 	
 	public void insertRow(OutputLeaveDataComponent outputLeaveDataComponent) {
@@ -52,4 +57,6 @@ public class TableModel extends DefaultTableModel{
 		
 		this.insertRow(this.getRowCount(),row);
 	}
+
+	
 }

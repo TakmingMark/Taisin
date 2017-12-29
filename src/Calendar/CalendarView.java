@@ -158,8 +158,15 @@ public class CalendarView extends JPanel {
 		endSecondComboBox.setEnabled(true);
 	}
 	
+	public JSONObject getCalendarViewJSON() {
+		JSONObject jsonObject=new JSONObject();
+		
+		jsonObject=getStartCalendarViewJSON();
+		jsonObject.putAll(getEndCalendarViewJSON());
+		return jsonObject;
+	}
 	
-	public JSONObject getStartCalendarJSON() {
+	public JSONObject getStartCalendarViewJSON() {
 		JSONObject jsonObject=new JSONObject();
 		
 		String startCalendar=startYearComboBox.getSelectedItem()+"/"+
@@ -174,8 +181,8 @@ public class CalendarView extends JPanel {
 		return jsonObject;
 	}
 	
-	public JSONObject getEndCalendarJSON() {
-JSONObject jsonObject=new JSONObject();
+	public JSONObject getEndCalendarViewJSON() {
+		JSONObject jsonObject=new JSONObject();
 		
 		String endCalendar=endYearComboBox.getSelectedItem()+"/"+
 				 endMonthComboBox.getSelectedItem()+"/"+
