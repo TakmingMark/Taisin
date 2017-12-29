@@ -15,7 +15,7 @@ public class CalendarView extends JPanel {
 	private JLabel startYearLabel, startMonthLabel, startDayLabel, startHourLabel, startMinuteLabel, startSecondLabel,
 			endYearLabel, endMonthLabel, endDayLabel, endHourLabel, endMinuteLabel, endSecondLabel;
 
-	private JComboBox startYearComboBox, startMonthComboBox, startDayComboBox, startHourComboBox, startMinuteComboBox,
+	private JComboBox<String> startYearComboBox, startMonthComboBox, startDayComboBox, startHourComboBox, startMinuteComboBox,
 			startSecondComboBox, endYearComboBox, endMonthComboBox, endDayComboBox, endHourComboBox, endMinuteComboBox,
 			endSecondComboBox;
 
@@ -41,19 +41,19 @@ public class CalendarView extends JPanel {
 		endMinuteLabel = new JLabel(TextContent.minuteText);
 		endSecondLabel = new JLabel(TextContent.secondText);
 
-		startYearComboBox = new JComboBox();
-		startMonthComboBox = new JComboBox();
-		startDayComboBox = new JComboBox();
-		startHourComboBox = new JComboBox();
-		startMinuteComboBox = new JComboBox();
-		startSecondComboBox = new JComboBox();
+		startYearComboBox = new JComboBox<String>();
+		startMonthComboBox = new JComboBox<String>();
+		startDayComboBox = new JComboBox<String>();
+		startHourComboBox = new JComboBox<String>();
+		startMinuteComboBox = new JComboBox<String>();
+		startSecondComboBox = new JComboBox<String>();
 
-		endYearComboBox = new JComboBox();
-		endMonthComboBox = new JComboBox();
-		endDayComboBox = new JComboBox();
-		endHourComboBox = new JComboBox();
-		endMinuteComboBox = new JComboBox();
-		endSecondComboBox = new JComboBox();
+		endYearComboBox = new JComboBox<String>();
+		endMonthComboBox = new JComboBox<String>();
+		endDayComboBox = new JComboBox<String>();
+		endHourComboBox = new JComboBox<String>();
+		endMinuteComboBox = new JComboBox<String>();
+		endSecondComboBox = new JComboBox<String>();
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		this.setLayout(groupLayout);
@@ -128,34 +128,36 @@ public class CalendarView extends JPanel {
 						.addComponent(endSecondComboBox, 0, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
 	}
 	
-	public void disable() {
-		startYearComboBox.setEnabled(false);
-		startMonthComboBox.setEnabled(false);
-		startDayComboBox.setEnabled(false);
-		startHourComboBox.setEnabled(false);
-		startMinuteComboBox.setEnabled(false);
-		startSecondComboBox.setEnabled(false);
-		endYearComboBox.setEnabled(false);
-		endMonthComboBox.setEnabled(false);
-		endDayComboBox.setEnabled(false);
-		endHourComboBox.setEnabled(false);
-		endMinuteComboBox.setEnabled(false);
-		endSecondComboBox.setEnabled(false);
-	}
+	public void setEenabled(boolean bool) {
+		if(bool) {
+			startYearComboBox.setEnabled(true);
+			startMonthComboBox.setEnabled(true);
+			startDayComboBox.setEnabled(true);
+			startHourComboBox.setEnabled(true);
+			startMinuteComboBox.setEnabled(true);
+			startSecondComboBox.setEnabled(true);
+			endYearComboBox.setEnabled(true);
+			endMonthComboBox.setEnabled(true);
+			endDayComboBox.setEnabled(true);
+			endHourComboBox.setEnabled(true);
+			endMinuteComboBox.setEnabled(true);
+			endSecondComboBox.setEnabled(true);
+		}
+		else {
+			startYearComboBox.setEnabled(false);
+			startMonthComboBox.setEnabled(false);
+			startDayComboBox.setEnabled(false);
+			startHourComboBox.setEnabled(false);
+			startMinuteComboBox.setEnabled(false);
+			startSecondComboBox.setEnabled(false);
+			endYearComboBox.setEnabled(false);
+			endMonthComboBox.setEnabled(false);
+			endDayComboBox.setEnabled(false);
+			endHourComboBox.setEnabled(false);
+			endMinuteComboBox.setEnabled(false);
+			endSecondComboBox.setEnabled(false);
+		}
 	
-	public void enable() {
-		startYearComboBox.setEnabled(true);
-		startMonthComboBox.setEnabled(true);
-		startDayComboBox.setEnabled(true);
-		startHourComboBox.setEnabled(true);
-		startMinuteComboBox.setEnabled(true);
-		startSecondComboBox.setEnabled(true);
-		endYearComboBox.setEnabled(true);
-		endMonthComboBox.setEnabled(true);
-		endDayComboBox.setEnabled(true);
-		endHourComboBox.setEnabled(true);
-		endMinuteComboBox.setEnabled(true);
-		endSecondComboBox.setEnabled(true);
 	}
 	
 	public JSONObject getCalendarViewJSON() {

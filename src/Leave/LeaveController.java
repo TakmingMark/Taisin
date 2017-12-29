@@ -29,9 +29,8 @@ public class LeaveController {
 	public void initController() {
 		initLeaveJSONToLayout();
 		initViewListener();
-		disableButtomPanel();
+		enabledButtomPanel(false);
 	}
-	
 	
 	private void initLeaveJSONToLayout() {
 		readJSONToComboBox(view.getJobTitleComboBox(),model.getInputLeaveData().getJobTitle());;
@@ -57,9 +56,9 @@ public class LeaveController {
 	}
 	
 	private void pressEnterButton() {
-		model.pressEnterButtonState(view.pressEnterButtonState(),calendar.getCalendarJSON());
-		disableTopAndMiddlePanel();
-		enableButtomPanel();
+		model.pressEnterButtonState(view.pressEnterButtonState(),calendar.getCalendarViewJSON());
+		enabledTopAndMiddlePanel(false);;
+		enabledButtomPanel(true);
 	}	
 	
 	private void pressInsertButton() {
@@ -69,38 +68,34 @@ public class LeaveController {
 
 	private void pressFinishButton() {
 		model.pressFinishButtonState();
-		enableTopAndMiddlePanel();
-		disableButtomPanel();
+		enabledTopAndMiddlePanel(true);
+		enabledButtomPanel(false);
 	}
 	
 	public JSONObject getCalendar() {
-		return calendar.getCalendarJSON();
+		return calendar.getCalendarViewJSON();
 	}
 	
-	public void disableTopAndMiddlePanel() {
-		calendar.disableLayout();
-		view.disableLeftTopAndMiddlePanel();
+	public void enabledTopAndMiddlePanel(boolean bool) {
+		if(bool) {
+			calendar.enabledLayout(true);
+			view.enableLeftTopAndMiddlePanel();
+		}
+		else {
+			calendar.enabledLayout(false);
+			view.disableLeftTopAndMiddlePanel();
+		}	
 	}
 	
-	public void enableTopAndMiddlePanel() {
-		calendar.enableLayout();
-		view.enableLeftTopAndMiddlePanel();
+	public void enabledButtomPanel(boolean bool) {
 		
-	}
-	
-	public void disableButtomPanel() {
-		view.disableLeftButtomPanel();
-	}
-	
-	public void enableButtomPanel() {
-		view.enableLeftButtomPanel();
+		view.enabledLeftButtomPanel(bool);
 	}
 	
 	public void setModel(LeaveModel model) {
 		this.model=model;
 	}
 	
-
 	public void setView(LeaveView view) {
 		this.view = view;
 	}

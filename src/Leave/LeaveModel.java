@@ -47,7 +47,6 @@ public class LeaveModel {
 			(new BufferedReader(new InputStreamReader(
 			new FileInputStream("json/leave.json"),"UTF-8")));
 		} catch (UnsupportedEncodingException | FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		inputLeaveData= new Gson().fromJson(bufferedReader,InputLeaveDataComponent.class);

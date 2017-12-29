@@ -57,6 +57,4 @@ public class TableModel extends DefaultTableModel{
 		
 		this.insertRow(this.getRowCount(),row);
 	}
-
-	
 }

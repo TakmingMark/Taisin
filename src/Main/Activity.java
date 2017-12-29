@@ -2,7 +2,6 @@ package Main;
 
 import Calendar.Calendar;
 import Calendar.CalendarController;
-import Calendar.CalendarJSONModel;
 import Calendar.CalendarView;
 import Leave.LeaveController;
 import Leave.LeaveModel;

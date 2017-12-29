@@ -427,25 +427,27 @@ public class LeaveView {
 		enterButton.setEnabled(true);;
 	}
 	
-	public void disableLeftButtomPanel() {
-		courseAgentComboBox.setEnabled(false);
-		classTimeComboBox.setEnabled(false);
-		classNameComboBox.setEnabled(false);
-		classTeacherComboBox.setEnabled(false);
-		courseNameComboBox.setEnabled(false);
-		
-		insertButton.setEnabled(false);
-		finishButton.setEnabled(false);
-	}
-	
-	public void enableLeftButtomPanel() {
-		courseAgentComboBox.setEnabled(true);
-		classTimeComboBox.setEnabled(true);
-		classNameComboBox.setEnabled(true);
-		courseNameComboBox.setEnabled(true);
-		
-		insertButton.setEnabled(true);
-		finishButton.setEnabled(true);
+	public void enabledLeftButtomPanel(boolean bool) {
+		if(bool) {
+			courseAgentComboBox.setEnabled(true);
+			classTimeComboBox.setEnabled(true);
+			classNameComboBox.setEnabled(true);
+			courseNameComboBox.setEnabled(true);
+			
+			insertButton.setEnabled(true);
+			finishButton.setEnabled(true);
+		}
+		else {
+			courseAgentComboBox.setEnabled(false);
+			classTimeComboBox.setEnabled(false);
+			classNameComboBox.setEnabled(false);
+			classTeacherComboBox.setEnabled(false);
+			courseNameComboBox.setEnabled(false);
+			
+			insertButton.setEnabled(false);
+			finishButton.setEnabled(false);
+		}
+
 	}
 	
 	public JComboBox<String> getJobTitleComboBox() {

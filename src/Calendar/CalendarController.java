@@ -1,6 +1,7 @@
 package Calendar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -8,7 +9,7 @@ import javax.swing.JPanel;
 import org.json.simple.JSONObject;
 
 public class CalendarController {
-	private CalendarJSONModel calendarJSONModel;
+	private CalendarModel calendarModel;
 	private CalendarView calendarView;
 	
 	protected CalendarController() {
@@ -21,46 +22,38 @@ public class CalendarController {
 	
 	public void initCalendarController() {
 		calendarView=CalendarView.getCalendarViewObject();
-		calendarJSONModel=CalendarJSONModel.getCalendarJSONModelObject();
-	
+		calendarModel=CalendarModel.getCalendarModelObject();
 		initCalendarJSONToLayout();
 	}
 	
 	private void initCalendarJSONToLayout() {
-		readJSONToComboBox(calendarView.getStartYearComboBox(),calendarJSONModel.getYearList());
-		readJSONToComboBox(calendarView.getStartMonthComboBox(),calendarJSONModel.getMonthList());
-		readJSONToComboBox(calendarView.getStartDayComboBox(),calendarJSONModel.getDayList());
-		readJSONToComboBox(calendarView.getStartHourComboBox(),calendarJSONModel.getHourList());
-		readJSONToComboBox(calendarView.getStartMinuteComboBox(),calendarJSONModel.getMinuteList());
-		readJSONToComboBox(calendarView.getStartSecondComboBox(),calendarJSONModel.getSecondList());
+		readJSONToComboBox(calendarView.getStartYearComboBox(),calendarModel.getInputCalendarDataFormat().getYear());
+		readJSONToComboBox(calendarView.getStartMonthComboBox(),calendarModel.getInputCalendarDataFormat().getMonth());
+		readJSONToComboBox(calendarView.getStartDayComboBox(),calendarModel.getInputCalendarDataFormat().getDay());
+		readJSONToComboBox(calendarView.getStartHourComboBox(),calendarModel.getInputCalendarDataFormat().getHour());
+		readJSONToComboBox(calendarView.getStartMinuteComboBox(),calendarModel.getInputCalendarDataFormat().getMinute());
+		readJSONToComboBox(calendarView.getStartSecondComboBox(),calendarModel.getInputCalendarDataFormat().getSecond());
 
-		readJSONToComboBox(calendarView.getEndYearComboBox(),calendarJSONModel.getYearList());
-		readJSONToComboBox(calendarView.getEndMonthComboBox(),calendarJSONModel.getMonthList());
-		readJSONToComboBox(calendarView.getEndDayComboBox(),calendarJSONModel.getDayList());
-		readJSONToComboBox(calendarView.getEndHourComboBox(),calendarJSONModel.getHourList());
-		readJSONToComboBox(calendarView.getEndMinuteComboBox(),calendarJSONModel.getMinuteList());
-		readJSONToComboBox(calendarView.getEndSecondComboBox(),calendarJSONModel.getSecondList());
+		readJSONToComboBox(calendarView.getEndYearComboBox(),calendarModel.getInputCalendarDataFormat().getYear());
+		readJSONToComboBox(calendarView.getEndMonthComboBox(),calendarModel.getInputCalendarDataFormat().getMonth());
+		readJSONToComboBox(calendarView.getEndDayComboBox(),calendarModel.getInputCalendarDataFormat().getDay());
+		readJSONToComboBox(calendarView.getEndHourComboBox(),calendarModel.getInputCalendarDataFormat().getHour());
+		readJSONToComboBox(calendarView.getEndMinuteComboBox(),calendarModel.getInputCalendarDataFormat().getMinute());
+		readJSONToComboBox(calendarView.getEndSecondComboBox(),calendarModel.getInputCalendarDataFormat().getSecond());
 	}
 	
-	private void readJSONToComboBox(JComboBox<String> jComboBox,ArrayList<String> arrayList) {
+	private void readJSONToComboBox(JComboBox<String> jComboBox,List<String> arrayList) {
 		for(String element:arrayList)
 			jComboBox.addItem(element);
 	}
 	
-	public void disableLayout() {
-		calendarView.disable();
-	}
-	
-	public void enableLayout() {
-		calendarView.enable();
+	public void enabledLayout(boolean bool) {
+		calendarView.setEenabled(bool);
 	}
 	public JSONObject getCalendarViewJSON() {
 		return calendarView.getCalendarViewJSON();
 	}
 	
-	public void setCalendarJSONModel(CalendarJSONModel calendarJSONModel) {
-		this.calendarJSONModel = calendarJSONModel;
-	}
 
 	public void setCalendarView(CalendarView calendarView) {
 		this.calendarView = calendarView;

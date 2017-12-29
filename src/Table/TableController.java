@@ -18,12 +18,12 @@ public class TableController {
 
 	protected TableController() {
 		initTableController();
+		initKeyBinding();
 	}
 	
 	public static TableController getTableControllerObject() {
 		return new TableController();
 	}
-	
 	
 	private void initTableController() {
 		tableView=TableView.getViewObject();
@@ -33,7 +33,9 @@ public class TableController {
 		this.setTableModel(tableModel);
 
 		tableView.setTableModel(this.getTableModel());
-		
+	}
+	
+	public void initKeyBinding() {
 		int condition = JComponent.WHEN_FOCUSED;
 		InputMap inputMap = tableView.getTable().getInputMap(condition);
 		ActionMap actionMap = tableView.getTable().getActionMap();

@@ -10,6 +10,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
+import Component.InputCalendarDataComponent;
+
 public class CalendarModel {
 	
 	private InputCalendarDataComponent inputCalendarDataFormat;
@@ -23,46 +25,23 @@ public class CalendarModel {
 	 }
 	 
 	 private void initCalendarModel() {
-		
-		 
-		 parseCalendarJSONFile();
+		 parseCalendarJSONFromCalendarFile();
 	 }
 	 
-	 private void parseCalendarJSONFile() {
+	 private void parseCalendarJSONFromCalendarFile() {
 			try {
 				JsonReader bufferedReader = new JsonReader
 						(new BufferedReader(new InputStreamReader(
 			            new FileInputStream("json/calendar.json"),"UTF-8")));
 
 				inputCalendarDataFormat= new Gson().fromJson(bufferedReader,InputCalendarDataComponent.class);
-						new ArrayList<InputCalendarDataComponent>();
-				
+				System.out.println(inputCalendarDataFormat.getDay());
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 
 		}
 
-	public List<String> getYearList() {
-		return inputCalendarDataFormat.getYearList();
-	}
-
-	public List<String> getMonthList() {
-		return inputCalendarDataFormat.getMonthList();
-	}
-
-	public List<String> getDayList() {
-		return inputCalendarDataFormat.getDayList();
-	}
-
-	public List<String> getHourList() {
-		return inputCalendarDataFormat.getHourList();
-	}
-
-	public List<String> getMinuteList() {
-		return inputCalendarDataFormat.getMinuteList();
-	}
-
-	public List<String> getSecondList() {
-		return inputCalendarDataFormat.getSecondList();
+	public InputCalendarDataComponent getInputCalendarDataFormat() {
+		return inputCalendarDataFormat;
 	}
 }
