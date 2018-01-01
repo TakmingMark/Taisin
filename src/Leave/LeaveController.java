@@ -1,8 +1,10 @@
 package Leave;
 
+import java.security.PrivilegedActionException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.loading.PrivateClassLoader;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -10,6 +12,7 @@ import org.json.simple.JSONObject;
 
 import Calendar.Calendar;
 import Calendar.CalendarController;
+import Component.Excel;
 import Table.Table;
 
 public class LeaveController {
@@ -18,6 +21,7 @@ public class LeaveController {
 	
 	private Calendar calendar;
 	private Table table;
+	private Excel excel;
 	
 	private LeaveController() {
 	}
@@ -29,30 +33,33 @@ public class LeaveController {
 	public void initController() {
 		initLeaveJSONToLayout();
 		initViewListener();
+		initExcelDataToTableView();
 		enabledButtomPanel(false);
 	}
 	
 	private void initLeaveJSONToLayout() {
-		readJSONToComboBox(view.getJobTitleComboBox(),model.getInputLeaveData().getJobTitle());;
-		readJSONToComboBox(view.getFillInPeopleComboBox(), model.getInputLeaveData().getEmployeeName());
-		readJSONToComboBox(view.getBusinessAgentComboBox(),model.getInputLeaveData().getEmployeeName());
-		readJSONToComboBox(view.getLeaveStateComboBox(), model.getInputLeaveData().getLeaveState());
-		readJSONToComboBox(view.getCourseAgentComboBox(), model.getInputLeaveData().getEmployeeName());
-		readJSONToComboBox(view.getClassNameComboBox(), model.getInputLeaveData().getClassName());
-		readJSONToComboBox(view.getClassTimeComboBox(), model.getInputLeaveData().getClassTime());
-		readJSONToComboBox(view.getClassTeacherComboBox(), model.getInputLeaveData().getClassTeacherName());
-		readJSONToComboBox(view.getCourseNameComboBox(), model.getInputLeaveData().getCourseName());
+		model.readJSONToComboBox(view.getJobTitleComboBox(),model.getInputLeaveData().getJobTitle());;
+		model.readJSONToComboBox(view.getFillInPeopleComboBox(), model.getInputLeaveData().getEmployeeName());
+		model.readJSONToComboBox(view.getBusinessAgentComboBox(),model.getInputLeaveData().getEmployeeName());
+		model.readJSONToComboBox(view.getLeaveStateComboBox(), model.getInputLeaveData().getLeaveState());
+		model.readJSONToComboBox(view.getCourseAgentComboBox(), model.getInputLeaveData().getEmployeeName());
+		model.readJSONToComboBox(view.getClassNameComboBox(), model.getInputLeaveData().getClassName());
+		model.readJSONToComboBox(view.getClassTimeComboBox(), model.getInputLeaveData().getClassTime());
+		model.readJSONToComboBox(view.getClassTeacherComboBox(), model.getInputLeaveData().getClassTeacherName());
+		model.readJSONToComboBox(view.getCourseNameComboBox(), model.getInputLeaveData().getCourseName());
 	}
 	
 	private void initViewListener() {
 		view.getEnterButton().addActionListener(e ->pressEnterButton());
 		view.getInsertButton().addActionListener(e ->pressInsertButton());
 		view.getFinishButton().addActionListener(e ->pressFinishButton());
+		view.getJobTitleComboBox().addActionListener(e ->autoFillinPeopleComboBox());
+		view.getFillInPeopleComboBox().addActionListener(e ->autoBusinessAgentComboBox());
+		view.getClassNameComboBox().addActionListener(e ->autoClassTeacherComboBox());
 	}
 	
-	private void readJSONToComboBox(JComboBox<String> jComboBox,List<String> list) {
-		for(String element:list)
-			jComboBox.addItem(element);
+	private void initExcelDataToTableView() {
+		table.getTableModel().setTableDataArrayList(excel.readExcel());
 	}
 	
 	private void pressEnterButton() {
@@ -70,6 +77,19 @@ public class LeaveController {
 		model.pressFinishButtonState();
 		enabledTopAndMiddlePanel(true);
 		enabledButtomPanel(false);
+		excel.writeExcel(table.getTableModel().getTableDataArrayList());
+	}
+	
+	private void autoFillinPeopleComboBox() {
+		model.autoFillinPeopleComboBox(view.getFillInPeopleComboBox(),view.getJobTitleComboBox().getSelectedIndex());
+	}
+	
+	private void autoBusinessAgentComboBox() {
+		System.out.println("atuoBusinessAgent");
+	}
+	
+	private void autoClassTeacherComboBox() {
+		model.autoClassTeacherComboBox(view.getClassTeacherComboBox(), view.getClassNameComboBox().getSelectedIndex());
 	}
 	
 	public JSONObject getCalendar() {
@@ -118,6 +138,14 @@ public class LeaveController {
 
 	public void setTable(Table table) {
 		this.table = table;
+	}
+
+	public Excel getExcel() {
+		return excel;
+	}
+
+	public void setExcel(Excel excel) {
+		this.excel = excel;
 	}
 	
 }

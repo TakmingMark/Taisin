@@ -3,6 +3,7 @@ package Main;
 import Calendar.Calendar;
 import Calendar.CalendarController;
 import Calendar.CalendarView;
+import Component.Excel;
 import Leave.LeaveController;
 import Leave.LeaveModel;
 import Leave.LeaveView;
@@ -15,18 +16,20 @@ public class Activity {
 	}
 
 	private void initTaisin() {
-		LeaveView leaveView=LeaveView.getLeaveViewObject();
-		LeaveModel leaveModel=LeaveModel.getModelObject();
-		LeaveController leaveController=LeaveController.getControllerObject();
-		
+		LeaveView leaveView = LeaveView.getLeaveViewObject();
+		LeaveModel leaveModel = LeaveModel.getModelObject();
+		LeaveController leaveController = LeaveController.getControllerObject();
+
 		leaveController.setModel(leaveModel);
 		leaveController.setView(leaveView);
+		
 		leaveController.setCalendar(Calendar.getCalendarObject());
 		leaveController.setTable(Table.getTableObject());
+		leaveController.setExcel(Excel.getExcelObeject());
 		
 		leaveView.setCalendarPanel(leaveController.getCalendarView());
 		leaveView.setTablePanel(leaveController.getTableView());
-		
+
 		leaveView.initLeaveView();
 		leaveController.initController();
 	}

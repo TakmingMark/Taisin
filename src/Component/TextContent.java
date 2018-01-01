@@ -32,4 +32,5 @@ public interface TextContent {
 	String INSERT="Insert";
 	String[] columnNames= {"職稱","假別","填寫人","事務代理人","請假期間","事由","課程代理人","班導","節別","班級","課程"};
 	
+	String leave="請假資料";
 }

@@ -91,10 +91,7 @@ class CenteredBoxView extends BoxView {
     }
     protected void layoutMajorAxis(int targetSpan, int axis, int[] offsets, int[] spans) {
         super.layoutMajorAxis(targetSpan,axis,offsets,spans);
-        System.out.println("targetSpan:"+targetSpan+"axis:"+axis+"offsets:"+offsets+"spans:"+spans);
-        for(int element:spans) {
-        	System.out.println(element);
-        }
+   
         int textBlockHeight = 0;
         int offset = 0;
  
@@ -106,6 +103,5 @@ class CenteredBoxView extends BoxView {
         for (int i = 0; i < offsets.length; i++) {
             offsets[i] += offset;
         }
-    	System.out.println(offset);
     }
 }    

@@ -35,7 +35,6 @@ public class CalendarModel {
 			            new FileInputStream("json/calendar.json"),"UTF-8")));
 
 				inputCalendarDataFormat= new Gson().fromJson(bufferedReader,InputCalendarDataComponent.class);
-				System.out.println(inputCalendarDataFormat.getDay());
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 

@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JComboBox;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -52,6 +54,11 @@ public class LeaveModel {
 		inputLeaveData= new Gson().fromJson(bufferedReader,InputLeaveDataComponent.class);
 	}
 	
+	public void readJSONToComboBox(JComboBox<String> jComboBox,List<String> list) {
+		for(String element:list)
+			jComboBox.addItem(element);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public void pressEnterButtonState(JSONObject jsonObject,JSONObject calendarJSONobject) {
 		this.leaveDataJSONObject=jsonObject;
@@ -70,6 +77,35 @@ public class LeaveModel {
 		clearJSONAndInitLayout();
 	}
 	
+	public void autoFillinPeopleComboBox(JComboBox<String> fillInPeopleCombox,int selection) {
+		int start=0;
+		int end=0;
+		switch (selection) {
+		case 0:
+			start=0;
+			end=2;
+			break;
+		case 1:
+			start=2;
+			end=4;
+			break;
+		case 2:
+			start=4;
+			end=10;
+			break;
+		default:
+			start=10;
+			end=inputLeaveData.getEmployeeName().size();
+			break;
+		}
+		fillInPeopleCombox.removeAllItems();
+		for(int index=start;index<end;index++)
+			fillInPeopleCombox.addItem(inputLeaveData.getEmployeeName().get(index));
+	}
+	
+	public void autoClassTeacherComboBox(JComboBox<String> classTeacherCombox,int selection) {
+		classTeacherCombox.setSelectedIndex(selection);
+	}
 	public void clearJSONAndInitLayout() {
 		leaveDataJSONObject.clear();
 		agentDataJSONArray.clear();

@@ -1,9 +1,14 @@
 package Table;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 import javax.xml.soap.Text;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
 import Component.OutputLeaveDataComponent;
 import Component.TextContent;
@@ -56,5 +61,23 @@ public class TableModel extends DefaultTableModel{
 				courseAgent,classTeacher,classTime,className,courseName};
 		
 		this.insertRow(this.getRowCount(),row);
+	}
+	
+	public ArrayList<ArrayList<String>> getTableDataArrayList() {
+		ArrayList<ArrayList<String>> tableDataArrayList=new ArrayList<>();
+		ArrayList<String> rowDataArrayList;
+		for (int row = 0; row < this.getRowCount(); row++){
+			rowDataArrayList=new ArrayList<>();
+			for(int column=0;column<this.getColumnCount();column++)
+				rowDataArrayList.add(this.getValueAt(row, column).toString());
+			tableDataArrayList.add(rowDataArrayList);
+			}
+		return tableDataArrayList;
+	}
+	
+	public void setTableDataArrayList(ArrayList<ArrayList<String>> tableDataArrayList) {	   
+		for(ArrayList<String> rowDataArrayList:tableDataArrayList) {
+			this.insertRow(this.getRowCount(),rowDataArrayList.toArray());
+        }
 	}
 }
