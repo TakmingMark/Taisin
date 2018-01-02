@@ -7,7 +7,9 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.json.simple.JSONArray;
@@ -26,7 +28,7 @@ public class LeaveModel {
 	private OutputLeaveDataComponent outputLeaveData;
 	private JSONObject leaveDataJSONObject;
 	private JSONArray agentDataJSONArray;
-	private Boolean isExit=true;
+	
 	private LeaveModel() {
 		initLeaveModel();
 	}
@@ -63,8 +65,6 @@ public class LeaveModel {
 		this.leaveDataJSONObject=jsonObject;
 		this.leaveDataJSONObject.putAll(calendarJSONobject);
 		outputLeaveData= new Gson().fromJson(leaveDataJSONObject.toJSONString(), OutputLeaveDataComponent.class);
-		isExit=false;
-		System.out.println(isExit);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -78,17 +78,14 @@ public class LeaveModel {
 	@SuppressWarnings("unchecked")
 	public void pressFinishButtonState() {
 		clearJSONAndInitLayout();
-		isExit=true;
 	}
 	
-	public void pressExitButtonState(LeaveView leaveView) {
-		System.out.println(isExit);
-		if(isExit)
+	public void pressExitButtonState(JFrame frame,JButton FinishButton) {
+		if(FinishButton.isEnabled())
 			System.exit(0);
-		JOptionPane.showMessageDialog(leaveView.getFrame(), 
+		JOptionPane.showMessageDialog(frame, 
 	            TextContent.exitTips, "Really Closing?", 
 	            JOptionPane.WARNING_MESSAGE);   
-
 	}
 	
 	public void autoFillinPeopleComboBox(JComboBox<String> fillInPeopleCombox,int selection) {

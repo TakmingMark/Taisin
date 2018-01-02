@@ -400,6 +400,7 @@ public class LeaveView {
 		jsonObject.put("courseName", courseNameComboBox.getSelectedItem());
 		return jsonObject;
 	}
+	
 	public void pressFinishButtonState() {
 		
 	}

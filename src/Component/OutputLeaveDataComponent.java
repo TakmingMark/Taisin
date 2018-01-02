@@ -130,8 +130,6 @@ public class OutputLeaveDataComponent {
 		public void setClassTime(String classTime) {
 			this.classTime = classTime;
 		}
-		
-		
 	}
 }
 

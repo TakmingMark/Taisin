@@ -74,27 +74,6 @@ public class TableModel extends DefaultTableModel{
 		this.addRow(new Object[]{null});
 	}
 	
-	public void insertRow(OutputLeaveDataComponent outputLeaveDataComponent) {
-		String jobTitle=outputLeaveDataComponent.getJobTitle();
-		String leaveState=outputLeaveDataComponent.getLeaveState();
-		String fillInPeople=outputLeaveDataComponent.getFillInPeople();
-		String businessAgent=outputLeaveDataComponent.getBusinessAgent();
-		String startCalendar=outputLeaveDataComponent.getStartCalendar();
-		String endCalendar=outputLeaveDataComponent.getEndCalendar();
-		String leaveCalendar=startCalendar+"¦Ü\n"+endCalendar+"¤î";
-		String eventDescription=outputLeaveDataComponent.getEventDescription();
-		AgentData agentData=outputLeaveDataComponent.getAgentData().get(outputLeaveDataComponent.getAgentData().size()-1);
-		String courseAgent=agentData.getCourseAgent();
-		String classTeacher=agentData.getClassTeacher();
-		String classTime=agentData.getClassTime();
-		String className=agentData.getClassName();
-		String courseName=agentData.getCourseName();
-		Object[] row= {jobTitle,leaveState,fillInPeople,businessAgent,leaveCalendar,eventDescription,
-				courseAgent,classTeacher,classTime,className,courseName};
-		
-		this.insertRow(this.getRowCount(),row);
-	}
-	
 	public ArrayList<ArrayList<String>> getTableDataArrayList() {
 		ArrayList<ArrayList<String>> tableDataArrayList=new ArrayList<>();
 		ArrayList<String> rowDataArrayList;

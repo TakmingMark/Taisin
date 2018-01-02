@@ -50,16 +50,12 @@ public class TableController {
 		});
 	}
 	
-	public void insertLeftTopDataRow(OutputLeaveDataComponent outputLeaveDataComponent) {
+	public void insertLeftTopDataToRow(OutputLeaveDataComponent outputLeaveDataComponent) {
 		this.getTableModel().insertLeftTopDataRow(outputLeaveDataComponent);
 	}
 	
-	public void insertLeftButtomDataRow(OutputLeaveDataComponent outputLeaveDataComponent) {
+	public void insertLeftButtomDataToRow(OutputLeaveDataComponent outputLeaveDataComponent) {
 		this.getTableModel().insertLeftButtomDataRow(outputLeaveDataComponent);
-	}
-	
-	public void insertLeaveData(OutputLeaveDataComponent outputLeaveDataComponent) {
-		this.getTableModel().insertRow(outputLeaveDataComponent);
 	}
 	
 	public TableView getTableView() {

@@ -19,7 +19,6 @@ import org.apache.poi.ss.usermodel.Row;
 public class Excel {
 	
 	private Excel() {
-		
 	}
 	
 	public static Excel getExcelObeject() {

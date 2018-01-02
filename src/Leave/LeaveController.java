@@ -29,13 +29,13 @@ public class LeaveController {
 	}
 	
 	public void initController() {
-		initLeaveJSONToLayout();
-		initViewListener();
+		initLeaveJSONToLeaveView();
+		initLeaveViewListener();
 		initExcelDataToTableView();
 		enabledLeftButtomPanel(false);
 	}
 	
-	private void initLeaveJSONToLayout() {
+	private void initLeaveJSONToLeaveView() {
 		model.readJSONToComboBox(view.getJobTitleComboBox(),model.getInputLeaveData().getJobTitle())
 			.readJSONToComboBox(view.getFillInPeopleComboBox(), model.getInputLeaveData().getEmployeeName())
 			.readJSONToComboBox(view.getBusinessAgentComboBox(),model.getInputLeaveData().getEmployeeName())
@@ -47,7 +47,7 @@ public class LeaveController {
 			.readJSONToComboBox(view.getCourseNameComboBox(), model.getInputLeaveData().getCourseName());
 	}
 	
-	private void initViewListener() {
+	private void initLeaveViewListener() {
 		view.getFrame().addWindowListener(new ListenerBuilder()
 			    .сlosing(e ->pressExitButton())
 			    .build());
@@ -64,12 +64,12 @@ public class LeaveController {
 	}
 	
 	private void pressExitButton() {
-		model.pressExitButtonState(view);
+		model.pressExitButtonState(view.getFrame(),view.getEnterButton());
 	}
 	
 	private void pressEnterButton() {
 		model.pressEnterButtonState(view.pressEnterButtonState(),calendar.getCalendarViewJSON());
-		table.insertLeftTopDataRow(model.getOutputLeaveData());
+		table.insertLeftTopDataToRow(model.getOutputLeaveData());
 		enabledLeftTopAndMiddlePanel(false);
 		enabledLeftButtomPanel(true);
 		writeExcel();
@@ -77,7 +77,7 @@ public class LeaveController {
 	
 	private void pressInsertButton() {
 		model.pressInsertButtonState(view.pressInsertButtonState());
-		table.insertLeftButtomDataRow(model.getOutputLeaveData());
+		table.insertLeftButtomDataToRow(model.getOutputLeaveData());
 		enabledFinishButton(true);
 		writeExcel();
 	}
@@ -104,6 +104,7 @@ public class LeaveController {
 	public void writeExcel() {
 		excel.writeExcel(table.getTableModel().getTableDataArrayList());
 	}
+	
 	public JSONObject getCalendar() {
 		return calendar.getCalendarViewJSON();
 	}
