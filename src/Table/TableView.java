@@ -30,7 +30,7 @@ public class TableView extends JPanel{
 	public void setTableModel(TableModel model) {
 		table.setModel(model);
 
-		table.setPreferredScrollableViewportSize(new Dimension(790, 400));
+		table.setPreferredScrollableViewportSize(new Dimension(790, 370));
 		table.getColumnModel().getColumn(0).setPreferredWidth(80);
 		table.getColumnModel().getColumn(1).setPreferredWidth(80);
 		table.getColumnModel().getColumn(2).setPreferredWidth(120);

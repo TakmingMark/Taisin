@@ -44,11 +44,18 @@ public class TableController {
 		actionMap.put( TextContent.DELETE, new AbstractAction() {
 			public void actionPerformed(ActionEvent e) {
 				int seletedRow=tableView.getTable().getSelectedRow();
-				System.out.println(seletedRow);
-				if(seletedRow!=-1)
+				if(seletedRow!=-1 && !(tableModel.getRowCount()-1==seletedRow))
 					tableModel.removeRow(seletedRow);
 			}
 		});
+	}
+	
+	public void insertLeftTopDataRow(OutputLeaveDataComponent outputLeaveDataComponent) {
+		this.getTableModel().insertLeftTopDataRow(outputLeaveDataComponent);
+	}
+	
+	public void insertLeftButtomDataRow(OutputLeaveDataComponent outputLeaveDataComponent) {
+		this.getTableModel().insertLeftButtomDataRow(outputLeaveDataComponent);
 	}
 	
 	public void insertLeaveData(OutputLeaveDataComponent outputLeaveDataComponent) {

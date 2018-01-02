@@ -18,8 +18,8 @@ public interface TextContent {
 	String insertText="新增";
 	String finishText="完成";
 	
-	String topPanelText="請假資料";
-	String buttomPanelText="代課資料";
+	String leftTopPanelText="請假資料";
+	String leftButtomPanelText="代課資料";
 	
 	String yearText="年";
 	String monthText="月";
@@ -33,4 +33,5 @@ public interface TextContent {
 	String[] columnNames= {"職稱","假別","填寫人","事務代理人","請假期間","事由","課程代理人","班導","節別","班級","課程"};
 	
 	String leave="請假資料";
+	String exitTips="新增沒完成，請再次確認";
 }

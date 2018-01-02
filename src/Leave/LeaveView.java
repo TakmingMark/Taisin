@@ -80,7 +80,7 @@ public class LeaveView {
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(frame.DO_NOTHING_ON_CLOSE);
 	}
 
 	public void initLeftLeaveView() {
@@ -184,7 +184,7 @@ public class LeaveView {
 		enterButton=new JButton(TextContent.enterText);
 		
 		leftTopPanel.setBorder(new TitledBorder
-				(new EtchedBorder(),TextContent.topPanelText,TitledBorder.LEFT,TitledBorder.TOP));
+				(new EtchedBorder(),TextContent.leftTopPanelText,TitledBorder.LEFT,TitledBorder.TOP));
 		
 		GroupLayout leftTopGroupLayout=new GroupLayout(leftTopPanel);
 		leftTopPanel.setLayout(leftTopGroupLayout);;
@@ -309,6 +309,8 @@ public class LeaveView {
 		insertButton=new JButton(TextContent.insertText);
 		finishButton=new JButton(TextContent.finishText);
 		
+		finishButton.setEnabled(false);
+		
 		GroupLayout leftButtomGroupLayout=new GroupLayout(leftButtomPanel);
 		leftButtomPanel.setLayout(leftButtomGroupLayout);
 		leftButtomGroupLayout.setHorizontalGroup(
@@ -373,7 +375,7 @@ public class LeaveView {
 				);
 		
 		leftButtomPanel.setBorder(new TitledBorder
-				(new EtchedBorder(),TextContent.buttomPanelText,TitledBorder.LEFT,TitledBorder.TOP));
+				(new EtchedBorder(),TextContent.leftButtomPanelText,TitledBorder.LEFT,TitledBorder.TOP));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -402,24 +404,25 @@ public class LeaveView {
 		
 	}
 	
-	public void disableLeftTopAndMiddlePanel() {
-		jobTitleComboBox.setEnabled(false);
-		fillInPeopleComboBox.setEnabled(false);
-		leaveStateComboBox.setEnabled(false);
-		businessAgentComboBox.setEnabled(false);
-		eventDescriptionTextArea.setEnabled(false);
-		
-		enterButton.setEnabled(false);;
-	}
-	
-	public void enableLeftTopAndMiddlePanel() {
-		jobTitleComboBox.setEnabled(true);
-		fillInPeopleComboBox.setEnabled(true);
-		leaveStateComboBox.setEnabled(true);
-		businessAgentComboBox.setEnabled(true);
-		eventDescriptionTextArea.setEnabled(true);
-		
-		enterButton.setEnabled(true);;
+	public void enabledLeftTopAndMiddlePanel(Boolean bool) {
+		if(bool) {
+			jobTitleComboBox.setEnabled(true);
+			fillInPeopleComboBox.setEnabled(true);
+			leaveStateComboBox.setEnabled(true);
+			businessAgentComboBox.setEnabled(true);
+			eventDescriptionTextArea.setEnabled(true);
+			
+			enterButton.setEnabled(true);;
+		}
+		else {
+			jobTitleComboBox.setEnabled(false);
+			fillInPeopleComboBox.setEnabled(false);
+			leaveStateComboBox.setEnabled(false);
+			businessAgentComboBox.setEnabled(false);
+			eventDescriptionTextArea.setEnabled(false);
+			
+			enterButton.setEnabled(false);;
+		}
 	}
 	
 	public void enabledLeftButtomPanel(boolean bool) {
@@ -428,9 +431,7 @@ public class LeaveView {
 			classTimeComboBox.setEnabled(true);
 			classNameComboBox.setEnabled(true);
 			courseNameComboBox.setEnabled(true);
-			
-			insertButton.setEnabled(true);
-			finishButton.setEnabled(true);
+			insertButton.setEnabled(true);	
 		}
 		else {
 			courseAgentComboBox.setEnabled(false);
@@ -438,11 +439,16 @@ public class LeaveView {
 			classNameComboBox.setEnabled(false);
 			classTeacherComboBox.setEnabled(false);
 			courseNameComboBox.setEnabled(false);
-			
 			insertButton.setEnabled(false);
-			finishButton.setEnabled(false);
 		}
 
+	}
+	
+	public void enabledFinishButton(boolean bool) {
+		if(bool)
+			finishButton.setEnabled(true);
+		else
+			finishButton.setEnabled(false);
 	}
 	
 	public JComboBox<String> getJobTitleComboBox() {
@@ -500,4 +506,13 @@ public class LeaveView {
 	public JButton getFinishButton() {
 		return finishButton;
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+	
 }

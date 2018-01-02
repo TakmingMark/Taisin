@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,6 +18,7 @@ import com.google.gson.stream.JsonReader;
 
 import Component.InputLeaveDataComponent;
 import Component.OutputLeaveDataComponent;
+import Component.TextContent;
 
 
 public class LeaveModel {
@@ -24,7 +26,7 @@ public class LeaveModel {
 	private OutputLeaveDataComponent outputLeaveData;
 	private JSONObject leaveDataJSONObject;
 	private JSONArray agentDataJSONArray;
-	
+	private Boolean isExit=true;
 	private LeaveModel() {
 		initLeaveModel();
 	}
@@ -50,15 +52,19 @@ public class LeaveModel {
 		inputLeaveData= new Gson().fromJson(bufferedReader,InputLeaveDataComponent.class);
 	}
 	
-	public void readJSONToComboBox(JComboBox<String> jComboBox,List<String> list) {
+	public LeaveModel readJSONToComboBox(JComboBox<String> jComboBox,List<String> list) {
 		for(String element:list)
 			jComboBox.addItem(element);
+		return this;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void pressEnterButtonState(JSONObject jsonObject,JSONObject calendarJSONobject) {
 		this.leaveDataJSONObject=jsonObject;
 		this.leaveDataJSONObject.putAll(calendarJSONobject);
+		outputLeaveData= new Gson().fromJson(leaveDataJSONObject.toJSONString(), OutputLeaveDataComponent.class);
+		isExit=false;
+		System.out.println(isExit);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -66,11 +72,23 @@ public class LeaveModel {
 		this.agentDataJSONArray.add(jsonObject);
 		leaveDataJSONObject.put("agentData", agentDataJSONArray);
 		outputLeaveData= new Gson().fromJson(leaveDataJSONObject.toJSONString(), OutputLeaveDataComponent.class);
+		clearJSONAndInitLayout();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void pressFinishButtonState() {
 		clearJSONAndInitLayout();
+		isExit=true;
+	}
+	
+	public void pressExitButtonState(LeaveView leaveView) {
+		System.out.println(isExit);
+		if(isExit)
+			System.exit(0);
+		JOptionPane.showMessageDialog(leaveView.getFrame(), 
+	            TextContent.exitTips, "Really Closing?", 
+	            JOptionPane.WARNING_MESSAGE);   
+
 	}
 	
 	public void autoFillinPeopleComboBox(JComboBox<String> fillInPeopleCombox,int selection) {

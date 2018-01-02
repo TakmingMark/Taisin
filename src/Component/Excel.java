@@ -26,7 +26,7 @@ public class Excel {
 		return new Excel();
 	} 
 	
-	public static ArrayList<ArrayList<String>> readExcel()  {
+	public ArrayList<ArrayList<String>> readExcel()  {
 		ArrayList<ArrayList<String>> tableDataArrayList=new ArrayList<>();
 		ArrayList<String> rowDataArrayList;	
         FileInputStream fileInputStream=null ;
@@ -51,6 +51,8 @@ public class Excel {
 						Cell currentCell=cellIterator.next();
 						if(currentCell.getCellTypeEnum() !=CellType.BLANK)
 							rowDataArrayList.add(currentCell.toString());
+						else
+							rowDataArrayList.add(null);
 					}
 					tableDataArrayList.add(rowDataArrayList);
 				}
@@ -80,6 +82,8 @@ public class Excel {
         	Cell cell=row.createCell(columnNum++);
     		if(leaveColumn instanceof String)
     			cell.setCellValue((String) leaveColumn);
+    		else
+    			cell.setCellValue("");
         }
         
         for(ArrayList<String> rowDataArrayList:tableDataArrayList) {
@@ -89,6 +93,8 @@ public class Excel {
         		Cell cell=row.createCell(columnNum++);
         		if(leaveCell instanceof String)
         			cell.setCellValue((String) leaveCell);
+        		else
+        			cell.setCellValue("");
         	}
         }
         try {
