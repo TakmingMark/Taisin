@@ -27,10 +27,10 @@ public class TableView extends JPanel{
 		table.setDefaultRenderer(String.class, multiLineTableCellRenderer);
 		table.setRowHeight(table.getRowHeight() * 3);
 		this.add(new JScrollPane(table));
-		autoScrolltableToButtom();
+		autoScrolltableToBottom();
 	}
 	
-	public void autoScrolltableToButtom()
+	public void autoScrolltableToBottom()
 	{
 	    table.addComponentListener(new ComponentAdapter() {
 	        public void componentResized(ComponentEvent e) {
