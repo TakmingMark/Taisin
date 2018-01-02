@@ -1,6 +1,8 @@
 package Table;
 
 import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -25,6 +27,17 @@ public class TableView extends JPanel{
 		table.setDefaultRenderer(String.class, multiLineTableCellRenderer);
 		table.setRowHeight(table.getRowHeight() * 3);
 		this.add(new JScrollPane(table));
+		autoScrolltableToButtom();
+	}
+	
+	public void autoScrolltableToButtom()
+	{
+	    table.addComponentListener(new ComponentAdapter() {
+	        public void componentResized(ComponentEvent e) {
+	            int lastIndex =table.getRowCount()-1;
+	            table.changeSelection(lastIndex, 0,false,false);
+	        }
+	    });
 	}
 	
 	public void setTableModel(TableModel model) {
