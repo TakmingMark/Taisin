@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -31,33 +33,37 @@ public class Excel {
         POIFSFileSystem poifsFileSystem=null ;
         HSSFWorkbook hssfWorkbook=null ;
         String filePath = "excel/write.xls";
-        try
-        {
-			fileInputStream = new FileInputStream(filePath);
-			poifsFileSystem = new POIFSFileSystem( fileInputStream);
-			hssfWorkbook = new HSSFWorkbook(poifsFileSystem);
-			HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0); 
-
-			Iterator<Row> rowIterator=hssfSheet.iterator();
-			
-			while(rowIterator.hasNext()) {
-				rowDataArrayList=new ArrayList<>();
-				Row currentRow=rowIterator.next();
-				Iterator<Cell> cellIterator=currentRow.iterator();
-				while(cellIterator.hasNext()) {
-					Cell currentCell=cellIterator.next();
-					if(currentCell.getCellTypeEnum() !=CellType.BLANK)
-						rowDataArrayList.add(currentCell.toString());
+        if(!Files.notExists(Paths.get(filePath))) {
+	        try
+	        {
+				fileInputStream = new FileInputStream(filePath);
+				poifsFileSystem = new POIFSFileSystem( fileInputStream);
+				hssfWorkbook = new HSSFWorkbook(poifsFileSystem);
+				HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0); 
+	
+				Iterator<Row> rowIterator=hssfSheet.iterator();
+				
+				while(rowIterator.hasNext()) {
+					rowDataArrayList=new ArrayList<>();
+					Row currentRow=rowIterator.next();
+					Iterator<Cell> cellIterator=currentRow.iterator();
+					while(cellIterator.hasNext()) {
+						Cell currentCell=cellIterator.next();
+						if(currentCell.getCellTypeEnum() !=CellType.BLANK)
+							rowDataArrayList.add(currentCell.toString());
+					}
+					tableDataArrayList.add(rowDataArrayList);
 				}
-				tableDataArrayList.add(rowDataArrayList);
-			}
-			fileInputStream.close();
-        }catch(java.io.IOException e)
-        {
-          e.printStackTrace();
+				fileInputStream.close();
+	        }catch(java.io.IOException e)
+	        {
+	          e.printStackTrace();
+	        }
+	        if(tableDataArrayList.size()!=0)
+	        	tableDataArrayList.remove(0);
+			return tableDataArrayList;
         }
-        tableDataArrayList.remove(0);
-		return tableDataArrayList;
+        return null;
 	}
 	
 	public void writeExcel(ArrayList<ArrayList<String>> tableDataArrayList) {

@@ -1,18 +1,12 @@
 package Table;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
-import javax.xml.soap.Text;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 
 import Component.OutputLeaveDataComponent;
-import Component.TextContent;
 import Component.OutputLeaveDataComponent.AgentData;
+import Component.TextContent;
 
 public class TableModel extends DefaultTableModel{
 	
@@ -76,8 +70,8 @@ public class TableModel extends DefaultTableModel{
 	}
 	
 	public void setTableDataArrayList(ArrayList<ArrayList<String>> tableDataArrayList) {	   
-		for(ArrayList<String> rowDataArrayList:tableDataArrayList) {
-			this.insertRow(this.getRowCount(),rowDataArrayList.toArray());
-        }
+		if(tableDataArrayList!=null)
+			for(ArrayList<String> rowDataArrayList:tableDataArrayList) 
+				this.insertRow(this.getRowCount(),rowDataArrayList.toArray());
 	}
 }
